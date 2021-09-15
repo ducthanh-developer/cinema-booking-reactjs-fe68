@@ -112,15 +112,16 @@ function Movies(props) {
         console.log('params', pagination, filters, sorter, extra);
     }
 
+    const handleSubmitAddMoive = () => {
+        return history.push('/admin/movies/add-movie');
+    };
+
+    console.log(props.history);
+
     return (
         <div>
             <Title level={2}>Quản lý Phim</Title>
-            <Button
-                type="primary"
-                onClick={() => {
-                    history.push('/admin/movies/add-movie');
-                }}
-            >
+            <Button type="primary" onClick={handleSubmitAddMoive}>
                 Thêm phim
             </Button>
             <div style={{ margin: '15px 0' }} />

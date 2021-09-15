@@ -14,7 +14,8 @@ import {
     Switch,
     Typography,
 } from 'antd';
-import { InboxOutlined } from '@ant-design/icons';
+import { useFormik } from 'formik';
+import { InboxOutlined, PoweroffOutlined } from '@ant-design/icons';
 
 const { Text, Title } = Typography;
 
@@ -33,6 +34,25 @@ function AddMovie(props) {
         setComponentSize(size);
     };
 
+    const formik = useFormik({
+        initialValues: {
+            tenPhim: '',
+            trailer: '',
+            moTa: '',
+            maNhom: 'GP01',
+            ngayKhoiChieu: '',
+            sapChieu: true,
+            dangChieu: true,
+            hot: true,
+            danhGia: 10,
+            hinhAnh: {},
+        },
+        onSubmit: (values) => {
+            console.log(values);
+            alert(JSON.stringify(values, null, 2));
+        },
+    });
+
     return (
         <div>
             <Title level={3}>Thêm mới phim</Title>
@@ -49,6 +69,7 @@ function AddMovie(props) {
                 }}
                 onValuesChange={onFormLayoutChange}
                 size={componentSize}
+                onSubmitCapture={formik.handleSubmit}
             >
                 <Form.Item label="Form Size" name="size">
                     <Radio.Group>
@@ -58,7 +79,7 @@ function AddMovie(props) {
                     </Radio.Group>
                 </Form.Item>
                 <Form.Item label="Tên phim:">
-                    <Input />
+                    <Input onChange={formik.handleChange} value={formik.values.firstName} />
                 </Form.Item>
                 <Form.Item label="Trailer:">
                     <Input />
@@ -101,18 +122,8 @@ function AddMovie(props) {
                     </Form.Item>
                 </Form.Item>
 
-                <Form.Item label="Button">
-                    <Button>Button</Button>
-                </Form.Item>
-                <Form.Item
-                    wrapperCol={{
-                        span: 12,
-                        offset: 6,
-                    }}
-                >
-                    <Button type="primary" htmlType="submit">
-                        Submit
-                    </Button>
+                <Form.Item label="Tác vụ:">
+                    <Button type="primary">Thêm phim</Button>
                 </Form.Item>
             </Form>
         </div>
