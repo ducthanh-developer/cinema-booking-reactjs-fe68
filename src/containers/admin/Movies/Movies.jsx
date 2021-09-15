@@ -5,15 +5,9 @@ import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { actFetchAllMovie } from './module/action';
 import { NavLink } from 'react-router-dom';
-import { history } from 'App';
 
 const { Search } = Input;
 const { Text, Title } = Typography;
-
-const handleErrorImage = (e, index) => {
-    e.target.onerror = null;
-    e.target.src = `https://picsum.photos/${index}/100/100`;
-};
 
 function Movies(props) {
     const { movieList } = useSelector((state) => state.movieReducer);

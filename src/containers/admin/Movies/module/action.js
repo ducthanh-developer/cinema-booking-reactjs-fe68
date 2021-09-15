@@ -19,7 +19,7 @@ export const actFetchAllMovie = () => {
     return (dispatch) => {
         //call api
         movieApi
-            .fetchAllMovieApi()
+            .fecthAllMovieApi()
             .then((res) => {
                 console.log(res.data.content);
                 dispatch(actFetchAllMovieSucess(res.data.content));

@@ -1,17 +1,13 @@
-import './App.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import PageNotFound from 'containers/shared/PageNotFound/PageNotFound';
-import ClientLayout from 'layouts/ClientLayout';
-import { adminRoutes, clientRoutes } from 'routes';
 import Dashboard from 'containers/admin/Dashboard/Dashboard';
 import AddMovie from 'containers/admin/Movies/AddMovie/AddMovie';
 import Movies from 'containers/admin/Movies/Movies';
 import Showtime from 'containers/admin/Showtimes/Showtime';
-import Home from 'containers/client/Home/Home';
 import PageNotFound from 'containers/shared/PageNotFound/PageNotFound';
 import { createBrowserHistory } from 'history';
 import AdminLayout from 'layouts/AdminLayout/AdminLayout';
+import ClientLayout from 'layouts/ClientLayout';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { clientRoutes } from 'routes';
 import './App.css';
 
 export const history = createBrowserHistory();
