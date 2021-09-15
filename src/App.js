@@ -1,26 +1,35 @@
-import Header from 'components/Header/Header';
-import Home from 'containers/client/Home/Home';
-
-import PageNotFound from 'containers/shared/PageNotFound/PageNotFound';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import { createBrowserHistory } from 'history';
-
-export const history = createBrowserHistory();
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import PageNotFound from 'containers/shared/PageNotFound/PageNotFound';
+import ClientLayout from 'layouts/ClientLayout';
+import { adminRoutes, clientRoutes } from 'routes';
 
 function App() {
-    return (
-        <div className='App'>
-            <Router>
-                <Header />
-                <Switch>
-                    <Route path='/' exact component={Home} />
+  const renderRoutes = (routes, Layout) => {
+    return routes.map((route, index) => {
+      const { path, component, exact } = route;
+      return (
+        <Layout
+          key={index}
+          path={path}
+          component={component}
+          exact={exact}
+        />
+      );
+    })
+  };
 
-                    <Route path='*' component={PageNotFound} />
-                </Switch>
-            </Router>
-        </div>
-    );
+  return (
+    <div className="App">
+      <Router>
+        <Switch>
+          {renderRoutes(clientRoutes, ClientLayout)}
+          {/* {renderRoutes(adminRoutes, AdminLayout)} */}
+          <Route path="*" component={PageNotFound} />
+        </Switch>
+      </Router>
+    </div>
+  );
 }
 
 export default App;

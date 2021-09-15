@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fancyapps/ui": "^4.0.4",
     "@testing-library/jest-dom": "5.11.4",
     "@testing-library/react": "11.1.0",
     "@testing-library/user-event": "12.1.10",
+    "antd": "4.16.13",
     "axios": "0.21.1",
     "bootstrap": "4.6.0",
-    "history": "^4.10.0",
     "jquery": "3.6.0",
     "moment": "2.29.1",
     "node-sass": "4.14.1",
@@ -18,9 +19,12 @@
     "react-redux": "7.2.4",
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.3",
+    "react-slick": "^0.28.1",
+    "react-videojs-fancybox": "0.0.7",
     "redux": "4.1.1",
     "redux-devtools-extension": "2.13.9",
     "redux-thunk": "2.3.0",
+    "slick-carousel": "^1.8.1",
     "web-vitals": "1.0.1"
   },
   "scripts": {

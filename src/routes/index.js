@@ -1,4 +1,7 @@
 import About from 'containers/client/About/About';
+import DemoAntDesign from 'containers/client/DemoAntDesign/DemoAntDesign';
+import DemoHOC from 'containers/client/DemoHOC/DemoHOC';
+import Parent from 'containers/client/DemoHook/Parent';
 import Home from 'containers/client/Home/Home';
 import MovieDetail from 'containers/client/MovieDetail/MovieDetail';
 import Review from 'containers/client/Review/Review';
@@ -36,7 +39,26 @@ export const clientRoutes = [
     component: SeatPlan,
     exact: false,
   },
-  
+  {
+    path: '/demo-hook',
+    component: Parent,
+    exact: false,
+  },
+  {
+    path: '/demo-hoc',
+    component: DemoHOC,
+    exact: false,
+  },
+  {
+    path: '/demo-hoc',
+    component: DemoHOC,
+    exact: false,
+  },
+  {
+    path: '/demo-antd',
+    component: DemoAntDesign,
+    exact: false,
+  },
 ];
 
 export const adminRoutes = [];
