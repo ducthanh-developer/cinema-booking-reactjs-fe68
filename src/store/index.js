@@ -3,6 +3,7 @@ import movieReducer from "containers/client/Home/module/reducer";
 import movieDetailReducer from "containers/client/MovieDetail/module/reducer";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from "redux-thunk";
+import movieReducer from 'containers/admin/Movies/module/reducer'
 
 const rootReducer = combineReducers({
   movieReducer,
