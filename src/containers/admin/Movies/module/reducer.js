@@ -1,4 +1,4 @@
-import { FETCH_FILM_LIST_SUCCESS, FETCH_FILM_LIST_FAILED } from './types';
+import { FETCH_MOVIE_LIST_SUCCESS, FETCH_MOVIE_LIST_FAILED } from './types';
 
 const initialState = {
     movieList: [],
@@ -7,10 +7,10 @@ const initialState = {
 
 function movieReducer(state = initialState, { type, payload }) {
     switch (type) {
-        case FETCH_FILM_LIST_SUCCESS: {
+        case FETCH_MOVIE_LIST_SUCCESS: {
             return { ...state, movieList: payload };
         }
-        case FETCH_FILM_LIST_FAILED: {
+        case FETCH_MOVIE_LIST_FAILED: {
             return { ...state, error: payload };
         }
         default:

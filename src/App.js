@@ -1,5 +1,6 @@
 import Dashboard from 'containers/admin/Dashboard/Dashboard';
-import Films from 'containers/admin/Films/Films';
+import AddMovie from 'containers/admin/Movies/AddMovie/AddMovie';
+import Movies from 'containers/admin/Movies/Movies';
 import Showtime from 'containers/admin/Showtimes/Showtime';
 import Home from 'containers/client/Home/Home';
 import PageNotFound from 'containers/shared/PageNotFound/PageNotFound';
@@ -18,7 +19,8 @@ function App() {
                     <Route path='/' exact Component={Home} />
 
                     <AdminLayout path='/admin' exact Component={Dashboard} />
-                    <AdminLayout path='/admin/films' exact Component={Films} />
+                    <AdminLayout path='/admin/movies' exact Component={Movies} />
+                    <AdminLayout path='/admin/movies/add-movie' exact Component={AddMovie} />
                     <AdminLayout
                         path='/admin/users'
                         exact

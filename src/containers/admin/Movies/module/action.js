@@ -1,15 +1,15 @@
 import movieApi from 'apis/movieApi';
-import { FETCH_FILM_LIST_SUCCESS, FETCH_FILM_LIST_FAILED } from './types';
+import { FETCH_MOVIE_LIST_SUCCESS, FETCH_MOVIE_LIST_FAILED } from './types';
 
 const actFetchAllMovieSucess = (movieList) => {
     return {
-        type: FETCH_FILM_LIST_SUCCESS,
+        type: FETCH_MOVIE_LIST_SUCCESS,
         payload: movieList,
     };
 };
 const actFetchAllMovieFailed = (err) => {
     return {
-        type: FETCH_FILM_LIST_FAILED,
+        type: FETCH_MOVIE_LIST_FAILED,
         payload: err,
     };
 };
