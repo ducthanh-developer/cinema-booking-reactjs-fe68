@@ -13,7 +13,7 @@ const initialState = {
   listTheaterSystem: [],
 };
 
-const movieReducer = (state = initialState, { type, payload }) => {
+const movieClientReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case FETCH_ALL_MOVIE_SUCCESS: {
       state.listMovie = payload;
@@ -40,4 +40,4 @@ const movieReducer = (state = initialState, { type, payload }) => {
   }
 };
 
-export default movieReducer;
+export default movieClientReducer;

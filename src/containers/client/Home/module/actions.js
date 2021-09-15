@@ -34,7 +34,7 @@ export const actFetchAllMovieApi = () => {
     dispatch(actStartLoading());
     // call api
     movieApi
-      .fecthAllMovieApi()
+      .fetchAllMovieApi()
       .then((response) => {
         dispatch(actFetchAllMovieSuccess(response.data.content));
         dispatch(actStopLoading());

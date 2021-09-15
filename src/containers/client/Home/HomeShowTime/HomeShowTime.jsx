@@ -98,7 +98,7 @@ class HomeShowTime extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  return { listTheaterSystem: state.movieReducer.listTheaterSystem };
+  return { listTheaterSystem: state.movieClientReducer.listTheaterSystem };
 };
 
 const mapDispatchToProps = (dispatch) => {

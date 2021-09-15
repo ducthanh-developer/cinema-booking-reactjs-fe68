@@ -5,7 +5,7 @@ const initialState = {
     error:'',
 };
 
-function movieReducer(state = initialState, { type, payload }) {
+function movieAdminReducer(state = initialState, { type, payload }) {
     switch (type) {
         case FETCH_MOVIE_LIST_SUCCESS: {
             return { ...state, movieList: payload };
@@ -18,4 +18,4 @@ function movieReducer(state = initialState, { type, payload }) {
     }
 }
 
-export default movieReducer;
+export default movieAdminReducer;

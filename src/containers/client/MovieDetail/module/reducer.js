@@ -10,7 +10,7 @@ const initialState = {
   error: '',
 };
 
-const movieDetailReducer = (state = initialState, { type, payload }) => {
+const movieDetailClientReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case FETCH_MOVIE_DETAIL_REQUEST:
       return { ...state, loading: true };
@@ -26,4 +26,4 @@ const movieDetailReducer = (state = initialState, { type, payload }) => {
   }
 };
 
-export default movieDetailReducer;
+export default movieDetailClientReducer;
