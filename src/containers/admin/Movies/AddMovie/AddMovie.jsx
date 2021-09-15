@@ -123,7 +123,9 @@ function AddMovie(props) {
                 </Form.Item>
 
                 <Form.Item label="Tác vụ:">
-                    <Button type="primary">Thêm phim</Button>
+                    <button className="bg-blue-300 text-white p-2" type="submit">
+                        Thêm phim
+                    </button>
                 </Form.Item>
             </Form>
         </div>
