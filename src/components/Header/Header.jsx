@@ -8,7 +8,7 @@ export default class Header extends Component {
         <div className="header__content">
           <nav className="navbar navbar-expand-md navbar-light">
             <Link to="/" className="navbar-brand">
-              <img src="../img/web-logo.png" alt />
+              <img src="../img/web-logo.png" alt="true" />
             </Link>
             <button className="navbar-toggler" id="showMenu" type="button">
               <span className="navbar-toggler-icon" />
@@ -17,37 +17,37 @@ export default class Header extends Component {
               <ul className="navbar-nav">
                 <div className="header__center">
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
+                    <a className="nav-link" href="true">
                       Lịch chiếu
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
+                    <a className="nav-link" href="true">
                       Cụm rạp
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
+                    <a className="nav-link" href="true">
                       Tin tức
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
+                    <a className="nav-link" href="true">
                       Ứng dụng
                     </a>
                   </li>
                 </div>
                 <div className="header__right">
                   <li className="nav-item bar">
-                    <a className="nav-link" href="#">
-                      <img src="../img/avatar.png" alt />
+                    <a className="nav-link" href="true">
+                      <img src="../img/avatar.png" alt="true" />
                       Đăng nhập
                     </a>
                   </li>
                   <li className="nav-item dropdown">
                     <a
                       className="nav-link dropdown-toggle"
-                      href="#"
+                      href="true"
                       id="navbarDropdownMenuLink"
                       role="button"
                       data-toggle="dropdown"
@@ -57,7 +57,7 @@ export default class Header extends Component {
                       <img
                         className="location"
                         src="../img/location-header.png"
-                        alt
+                        alt="true"
                       />
                       Hồ Chí Minh
                     </a>
@@ -65,34 +65,34 @@ export default class Header extends Component {
                       className="dropdown-menu"
                       aria-labelledby="navbarDropdownMenuLink"
                     >
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="true">
                         Hồ Chí Minh
                       </a>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="true">
                         Hà Nội
                       </a>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="true">
                         Hải Phòng
                       </a>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="true">
                         Đà nẵng
                       </a>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="true">
                         Biên Hòa
                       </a>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="true">
                         Nha Trang
                       </a>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="true">
                         Bình Dương
                       </a>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="true">
                         Phan Thiết
                       </a>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="true">
                         Hạ Long
                       </a>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="true">
                         Cần Thơ
                       </a>
                     </div>
@@ -106,26 +106,26 @@ export default class Header extends Component {
           <div className="header__menu--overlay"></div>
           <div className="header__menu--content">
             <div className="header__menu--active">
-              <img src="../img/avatar.png" alt />
-              <a href>Đăng Nhập</a>
+              <img src="../img/avatar.png" alt="true" />
+              <a href="true">Đăng Nhập</a>
               <i className="fa fa-arrow-right" id="closeMenu" />
             </div>
             <ul>
               <li>
-                <a href>Lịch Chiếu</a>
+                <a href="true">Lịch Chiếu</a>
               </li>
               <li>
-                <a href>Cụm Rạp</a>
+                <a href="true">Cụm Rạp</a>
               </li>
               <li>
-                <a href>Tin Tức</a>
+                <a href="true">Tin Tức</a>
               </li>
               <li>
-                <a href>Ứng Dụng</a>
+                <a href="true">Ứng Dụng</a>
               </li>
               <li>
                 <a
-                  href="#"
+                  href="true"
                   id="chooseOption"
                   data-toggle="modal"
                   data-target=".bd-example-modal-lg"
@@ -147,45 +147,45 @@ export default class Header extends Component {
             <div className="modal-content">
               <ul>
                 <li>
-                  <a className="active" href="#">
+                  <a className="active" href="true">
                     Hồ Chí Minh
                   </a>
                 </li>
                 <li>
-                  <a href="#">Hà Nội</a>
+                  <a href="true">Hà Nội</a>
                 </li>
                 <li>
-                  <a href="#">Hải Phòng</a>
+                  <a href="true">Hải Phòng</a>
                 </li>
                 <li>
-                  <a href="#">Đà nẵng</a>
+                  <a href="true">Đà nẵng</a>
                 </li>
                 <li>
-                  <a href="#">Biên Hòa</a>
+                  <a href="true">Biên Hòa</a>
                 </li>
                 <li>
-                  <a href="#">Nha Trang</a>
+                  <a href="true">Nha Trang</a>
                 </li>
                 <li>
-                  <a href="#">Bình Dương</a>
+                  <a href="true">Bình Dương</a>
                 </li>
                 <li>
-                  <a href="#">Phan Thiết</a>
+                  <a href="true">Phan Thiết</a>
                 </li>
                 <li>
-                  <a href="#">Hạ Long</a>
+                  <a href="true">Hạ Long</a>
                 </li>
                 <li>
-                  <a href="#">Cần Thơ</a>
+                  <a href="true">Cần Thơ</a>
                 </li>
                 <li>
-                  <a href="#">Vũng Tàu</a>
+                  <a href="true">Vũng Tàu</a>
                 </li>
                 <li>
-                  <a href="#">Huế</a>
+                  <a href="true">Huế</a>
                 </li>
                 <li>
-                  <a href="#">Quy Nhơn</a>
+                  <a href="true">Quy Nhơn</a>
                 </li>
               </ul>
             </div>
