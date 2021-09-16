@@ -10,7 +10,7 @@ const { Search } = Input;
 const { Text, Title } = Typography;
 
 function Movies(props) {
-    const { movieList } = useSelector((state) => state.movieReducer);
+    const { movieList } = useSelector((state) => state.movieAdminReducer);
 
     const dispatch = useDispatch();
 
