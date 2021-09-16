@@ -1,29 +1,21 @@
-import {
-  FETCH_MOVIE_DETAIL_FAIL,
-  FETCH_MOVIE_DETAIL_REQUEST,
-  FETCH_MOVIE_DETAIL_SUCCESS,
-} from './types';
+import { FETCH_MOVIE_DETAIL, FETCH_MOVIE_SHOWTIME } from './types';
 
 const initialState = {
-  movieDetail: null,
-  loading: false,
-  error: '',
+    movieDetail: {},
+    movieShowtime: [],
 };
 
-const movieDetailReducer = (state = initialState, { type, payload }) => {
-  switch (type) {
-    case FETCH_MOVIE_DETAIL_REQUEST:
-      return { ...state, loading: true };
-
-    case FETCH_MOVIE_DETAIL_SUCCESS:
-      return { ...state, movieDetail: payload, loading: false };
-
-    case FETCH_MOVIE_DETAIL_FAIL:
-      return { ...state, error: payload, loading: false };
-
-    default:
-      return state;
-  }
+const clientMovieDetailReducer = (state = initialState, { type, payload }) => {
+    switch (type) {
+        case FETCH_MOVIE_DETAIL:
+            state.movieDetail = payload;
+            return { ...state };
+        case FETCH_MOVIE_SHOWTIME:
+            state.movieShowtime = payload;
+            return { ...state };
+        default:
+            return state;
+    }
 };
 
-export default movieDetailReducer;
+export default clientMovieDetailReducer;

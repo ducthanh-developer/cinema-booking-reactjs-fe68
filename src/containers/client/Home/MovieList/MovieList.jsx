@@ -29,7 +29,7 @@ class MovieList extends PureComponent {
                                     style={{ fontSize: '8px', color: 'red' }}
                                 ></Rate>
                             </span>
-                            <Link to="/">
+                            <Link to={`/movie-detail/${movie.maPhim}`}>
                                 <div className="products__overlay">
                                     <button
                                         className="products__overlay--btn"
@@ -65,7 +65,7 @@ class MovieList extends PureComponent {
                             <span className="products__review">
                                 <p>{moment(movie.ngayKhoiChieu).format('DD/MM')}</p>
                             </span>
-                            <Link to="/">
+                            <Link to={`/movie-detail/${movie.maPhim}`}>
                                 <div className="products__overlay">
                                     <button
                                         className="products__overlay--btn"

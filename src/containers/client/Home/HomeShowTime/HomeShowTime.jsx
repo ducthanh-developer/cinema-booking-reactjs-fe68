@@ -76,7 +76,10 @@ class HomeShowTime extends PureComponent {
                                                                 .slice(0, 12)
                                                                 .map((showtime, index) => {
                                                                     return (
-                                                                        <Button className="m-2" key={index}>
+                                                                        <Button
+                                                                            className="m-2"
+                                                                            key={index}
+                                                                        >
                                                                             {moment(
                                                                                 showtime.ngayChieuGioChieu
                                                                             ).format('hh:mm A')}
