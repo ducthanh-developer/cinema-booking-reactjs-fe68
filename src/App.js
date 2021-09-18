@@ -2,13 +2,22 @@ import Dashboard from 'containers/admin/Dashboard/Dashboard';
 import AddMovie from 'containers/admin/Movies/AddMovie/AddMovie';
 import Movies from 'containers/admin/Movies/Movies';
 import Showtime from 'containers/admin/Showtimes/Showtime';
+import Login from 'containers/client/User/Login/Login';
 import PageNotFound from 'containers/shared/PageNotFound/PageNotFound';
 import { createBrowserHistory } from 'history';
 import AdminLayout from 'layouts/AdminLayout/AdminLayout';
+import BookTicketLayout from 'layouts/BookTicketLayout';
 import ClientLayout from 'layouts/ClientLayout';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { clientRoutes } from 'routes';
+import { clientRoutes, ticketRoutes, userRoutes } from 'routes';
+import { Suspense, lazy } from 'react';
 import './App.css';
+import Loading from 'components/Loading/Loading';
+import UserLayout from 'layouts/UserLayout';
+
+const BookTicketLayoutLazy = lazy(() => import('layouts/BookTicketLayout'));
+const ClientLayoutLazy = lazy(() => import('layouts/ClientLayout'));
+const UserLayoutLazy = lazy(() => import('layouts/UserLayout'));
 
 export const history = createBrowserHistory();
 
@@ -24,9 +33,11 @@ function App() {
         <div className="App">
             <Router history={history}>
                 <Switch>
-                    {renderRoutes(clientRoutes, ClientLayout)}
-                    {/* {renderRoutes(adminRoutes, AdminLayout)} */}
-
+                    <Suspense fallback={<Loading />}>
+                        {renderRoutes(clientRoutes, ClientLayoutLazy)}
+                        {renderRoutes(ticketRoutes, BookTicketLayoutLazy)}
+                        {renderRoutes(userRoutes, UserLayoutLazy)}
+                    </Suspense>
                     <AdminLayout path="/admin" exact Component={Dashboard} />
                     <AdminLayout path="/admin/movies" exact Component={Movies} />
                     <AdminLayout path="/admin/movies/add-movie" exact Component={AddMovie} />

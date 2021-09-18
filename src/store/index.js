@@ -4,10 +4,12 @@ import thunk from 'redux-thunk';
 import movieAdminReducer from 'containers/admin/Movies/module/reducer';
 import clientMovieReducer from 'containers/client/Home/module/reducer';
 import clientMovieDetailReducer from 'containers/client/MovieDetail/module/reducer';
+import { clientUserReducer } from 'containers/client/User/module/reducer';
 const rootReducer = combineReducers({
     movieAdminReducer,
     clientMovieReducer,
     clientMovieDetailReducer,
+    clientUserReducer,
 });
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
