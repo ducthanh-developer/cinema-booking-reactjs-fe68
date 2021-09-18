@@ -4,6 +4,7 @@ import { actFetchMovieDetail, actFetchMovieShowTime } from './module/actions';
 import moment from 'moment';
 import { Rate, Tabs, Button } from 'antd';
 import './MovieDetail.scss';
+import { Link } from 'react-router-dom';
 
 class MovieDetail extends PureComponent {
     componentDidMount() {
@@ -43,9 +44,7 @@ class MovieDetail extends PureComponent {
                                         </div>
                                         <div className="complex__info mr-auto">
                                             <p>{theater.tenCumRap}</p>
-                                            <span>
-                                                {theater.diaChi}
-                                            </span>
+                                            <span>{theater.diaChi}</span>
                                         </div>
                                     </div>
                                     <div className="complex-showtime mb-4">
@@ -53,11 +52,13 @@ class MovieDetail extends PureComponent {
                                             .slice(0, 12)
                                             .map((showtime, index) => {
                                                 return (
-                                                    <Button className="m-2" key={index}>
-                                                        {moment(showtime.ngayChieuGioChieu).format(
-                                                            'hh:mm A'
-                                                        )}
-                                                    </Button>
+                                                    <Link key={index} to={`/checkout/${showtime.maLichChieu}`}>
+                                                        <Button className="m-2">
+                                                            {moment(
+                                                                showtime.ngayChieuGioChieu
+                                                            ).format('hh:mm A')}
+                                                        </Button>
+                                                    </Link>
                                                 );
                                             })}
                                     </div>

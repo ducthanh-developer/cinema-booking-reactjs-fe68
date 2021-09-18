@@ -17,6 +17,10 @@ const movieApi = {
     fetchMovieShowtimeApi(movieId) {
         return callApi(`/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${movieId}`);
     },
+
+    loginApi(userInfo) {
+        return callApi('/QuanLyNguoiDung/DangNhap', 'POST', userInfo);
+    },
 };
 
 export default movieApi;
