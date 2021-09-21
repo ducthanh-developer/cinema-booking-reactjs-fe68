@@ -1,34 +1,29 @@
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
 import {
+    Button,
+    DatePicker,
     Form,
     Input,
-    Button,
-    Radio,
-    Select,
-    Cascader,
-    DatePicker,
     InputNumber,
-    TreeSelect,
-    Upload,
+    message,
+    Radio,
     Switch,
     Typography,
+    Upload,
 } from 'antd';
 import { useFormik } from 'formik';
-import { InboxOutlined, PoweroffOutlined } from '@ant-design/icons';
+import moment from 'moment';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { actAddMovieUploadImage } from '../module/action';
 
-const { Text, Title } = Typography;
+const { Title } = Typography;
 
-const normFile = (e) => {
-    console.log('Upload event:', e);
-    if (Array.isArray(e)) {
-        return e;
-    }
-    return e && e.fileList;
-};
-
-function AddMovie(props) {
+function AddMovie() {
     const [componentSize, setComponentSize] = useState('default');
+    const [imageUrl, setSrcImg] = useState('');
+    const [visibleImg, setVisibleImg] = useState({ display: 'none' });
+
+    const dispatch = useDispatch();
 
     const onFormLayoutChange = ({ size }) => {
         setComponentSize(size);
@@ -39,7 +34,6 @@ function AddMovie(props) {
             tenPhim: '',
             trailer: '',
             moTa: '',
-            maNhom: 'GP01',
             ngayKhoiChieu: '',
             sapChieu: true,
             dangChieu: true,
@@ -48,10 +42,60 @@ function AddMovie(props) {
             hinhAnh: {},
         },
         onSubmit: (values) => {
-            console.log(values);
-            alert(JSON.stringify(values, null, 2));
+            console.log('values', values);
+            let formData = new FormData();
+            for (let key in values) {
+                if (key !== 'hinhAnh') {
+                    formData.append(key, values[key]);
+                }
+                formData.append('File', values.hinhAnh, values.hinhAnh.name);
+            }
+            dispatch(actAddMovieUploadImage(formData));
         },
     });
+
+    const handleChangeDatePicker = (value) => {
+        // Use moment library to change moment object to string
+        //console.log("value", moment(value).format("DD/MM/YYYY"));
+        let ngayKhoiChieu = moment(value).format('DD/MM/YYYY');
+        formik.setFieldValue('ngayKhoiChieu', ngayKhoiChieu);
+    };
+
+    // handle callback function to dynamic name props in <Switch name=""/> by closer function
+    const handleChangeSwitch = (name) => {
+        return (value) => {
+            formik.setFieldValue(name, value);
+        };
+    };
+
+    const handleChangeInputNumber = (name) => {
+        return (value) => {
+            formik.setFieldValue(name, value);
+        };
+    };
+
+    const handleFileChange = (e) => {
+        //console.log(e);
+
+        // get a file object in FileList
+        let file = e.target.files[0] || '';
+
+        // create a FileReader object to read file
+        let readerFile = new FileReader();
+
+        // get url from file passed
+        if (file && file.type.match('image.*')) {
+            readerFile.readAsDataURL(file);
+            // create a event by onload function to get result base64 image
+            readerFile.onload = (e) => {
+                setSrcImg(e.target.result || '');
+            };
+
+            // set file data into formik
+            formik.setFieldValue('hinhAnh', file);
+            setVisibleImg({ display: 'block' });
+        }
+    };
 
     return (
         <div>
@@ -79,53 +123,53 @@ function AddMovie(props) {
                     </Radio.Group>
                 </Form.Item>
                 <Form.Item label="Tên phim:">
-                    <Input onChange={formik.handleChange} value={formik.values.firstName} />
+                    <Input
+                        name="tenPhim"
+                        onChange={formik.handleChange}
+                        value={formik.values.tenPhim}
+                    />
                 </Form.Item>
                 <Form.Item label="Trailer:">
-                    <Input />
+                    <Input
+                        name="trailer"
+                        onChange={formik.handleChange}
+                        value={formik.values.trailer}
+                    />
                 </Form.Item>
                 <Form.Item label="Mô tả:">
-                    <Input />
+                    <Input name="moTa" onChange={formik.handleChange} value={formik.values.moTa} />
                 </Form.Item>
                 <Form.Item label="Ngày khởi chiếu">
-                    <DatePicker />
+                    <DatePicker format={'DD/MM/YYYY'} onChange={handleChangeDatePicker} />
                 </Form.Item>
                 <Form.Item label="Đang chiếu:" valuePropName="checked">
-                    <Switch />
+                    <Switch onChange={handleChangeSwitch('dangChieu')} />
                 </Form.Item>
                 <Form.Item label="Sắp chiếu:" valuePropName="checked">
-                    <Switch />
+                    <Switch onChange={handleChangeSwitch('sapChieu')} />
                 </Form.Item>
                 <Form.Item label="Hot:" valuePropName="checked">
-                    <Switch />
+                    <Switch onChange={handleChangeSwitch('hot')} />
                 </Form.Item>
                 <Form.Item label="Số sao:">
-                    <Input />
+                    <InputNumber onChange={handleChangeInputNumber('danhGia')} min={1} max={10} />
                 </Form.Item>
 
-                <Form.Item label="Dragger">
-                    <Form.Item
-                        name="dragger"
-                        valuePropName="fileList"
-                        getValueFromEvent={normFile}
-                        noStyle
-                    >
-                        <Upload.Dragger name="files" action="/upload.do">
-                            <p className="ant-upload-drag-icon">
-                                <InboxOutlined />
-                            </p>
-                            <p className="ant-upload-text">
-                                Click or drag file to this area to upload
-                            </p>
-                            <p className="ant-upload-hint">Support for a single or bulk upload.</p>
-                        </Upload.Dragger>
-                    </Form.Item>
+                <Form.Item label="Hình ảnh">
+                    <input type="file" onChange={handleFileChange} accept="image/*" />
+                    <br />
+                    <img
+                        src={imageUrl}
+                        alt={imageUrl}
+                        width={150}
+                        height={150}
+                        style={visibleImg}
+                    />
                 </Form.Item>
-
-                <Form.Item label="Tác vụ:">
-                    <button className="bg-blue-300 text-white p-2" type="submit">
+                <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
+                    <Button type="primary" htmlType="submit">
                         Thêm phim
-                    </button>
+                    </Button>
                 </Form.Item>
             </Form>
         </div>

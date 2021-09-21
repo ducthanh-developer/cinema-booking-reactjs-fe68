@@ -47,7 +47,7 @@ export const ticketRoutes = [
         component: Checkout,
         exact: true,
     },
-]
+];
 
 export const userRoutes = [
     {
@@ -60,6 +60,14 @@ export const userRoutes = [
         component: Register,
         exact: true,
     },
-]
+];
 
-export const adminRoutes = [];
+//export const adminUserRoutes = [
+//    {
+//        path: '/login',
+//        component: Login,
+//        exact: true,
+//    },
+//];
+//export const adminMovieRoutes = [];
+//export const adminShowtimeRoutes = [];

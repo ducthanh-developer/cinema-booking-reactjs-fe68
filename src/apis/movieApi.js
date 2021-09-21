@@ -21,6 +21,9 @@ const movieApi = {
     loginApi(userInfo) {
         return callApi('/QuanLyNguoiDung/DangNhap', 'POST', userInfo);
     },
+    addMovieUploadImage(formData){
+        return callApi('QuanLyPhim/ThemPhimUploadHinh', 'POST', formData);
+    }
 };
 
 export default movieApi;
