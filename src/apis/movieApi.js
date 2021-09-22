@@ -1,5 +1,6 @@
 import { GROUP_ID } from 'settings/apiConfig';
 import callApi from 'utils/callApi';
+import { ThongTinDatVe } from '../_core/models/ThongTinDatVe';
 
 const movieApi = {
     fecthAllMovieApi() {
@@ -20,6 +21,18 @@ const movieApi = {
 
     loginApi(userInfo) {
         return callApi('/QuanLyNguoiDung/DangNhap', 'POST', userInfo);
+    },
+
+    fetchTicketOfficeListApi(showtimeCode) {
+        return callApi(`/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${showtimeCode}`);
+    },
+
+    bookTicketApi(bookTicketInfo = new ThongTinDatVe()) {
+        return callApi(`/QuanLyDatVe/DatVe`, 'POST', bookTicketInfo);
+    },
+
+    fetchUserInfoApi() {
+        return callApi(`/QuanLyNguoiDung/ThongTinTaiKhoan`, 'POST');
     },
 };
 
