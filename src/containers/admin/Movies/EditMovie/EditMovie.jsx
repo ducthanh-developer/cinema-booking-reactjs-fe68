@@ -14,7 +14,7 @@ import { useFormik } from 'formik';
 import moment from 'moment';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { actEditMovieInfo, actFetchMovieInfo } from '../module/action';
+import { actEditMovieInfo, actFetchAllMovie, actFetchMovieInfo } from '../module/action';
 import { GROUP_ID } from 'settings/apiConfig';
 
 const { Title } = Typography;
@@ -53,18 +53,34 @@ function EditMovie(props) {
             hinhAnh: null,
         },
         onSubmit: (values) => {
-            //console.log('values', values);
+            console.log('values', values);
             let formData = new FormData();
             //console.log('values', values);
             for (let key in values) {
                 if (key !== 'hinhAnh') {
                     formData.append(key, values[key]);
+                } else {
+                    if (values.hinhAnh !== null) {
+                        formData.append('File', values.hinhAnh, values.hinhAnh.name);
+                    }
                 }
-                key === 'ngayKhoiChieu' && formData.append(key, values[key]);
-                values.hinhAnh !== null &&
-                    formData.append('File', values.hinhAnh, values.hinhAnh.name);
             }
-            dispatch(actEditMovieInfo(formData));
+            /** 
+            console.log(formData.get('maPhim'));
+            console.log(formData.get('tenPhim'));
+            console.log(formData.get('trailer'));
+            console.log(formData.get('moTa'));
+            console.log(formData.get('maPhim'));
+            console.log(formData.get('ngayKhoiChieu'));
+            console.log(formData.get('sapChieu'));
+            console.log(formData.get('dangChieu'));
+            console.log(formData.get('hot'));
+            console.log(formData.get('danhGia'));
+            console.log(formData.get('maNhom'));
+            console.log(formData.get('File'));
+            */
+
+            dispatch(actEditMovieInfo(formData, props));
         },
     });
 
@@ -88,7 +104,7 @@ function EditMovie(props) {
         };
     };
 
-    const handleFileChange = (e) => {
+    const handleFileChange = async (e) => {
         //console.log(e);
         // get a file object in FileList
         let file = e.target.files[0] || '';
@@ -96,13 +112,13 @@ function EditMovie(props) {
         let readerFile = new FileReader();
         // get url from file passed
         if (file && file.type.match('image.*')) {
+            // set file data into formik
+            await formik.setFieldValue('hinhAnh', file);
             readerFile.readAsDataURL(file);
             // create a event by onload function to get result base64 image
             readerFile.onload = (e) => {
                 setSrcImg(e.target.result || '');
             };
-            // set file data into formik
-            formik.setFieldValue('hinhAnh', file);
         }
     };
 

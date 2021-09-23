@@ -18,7 +18,7 @@ import { actAddMovieUploadImage } from '../module/action';
 
 const { Title } = Typography;
 
-function AddMovie() {
+function AddMovie(props) {
     const [componentSize, setComponentSize] = useState('default');
     const [imageUrl, setSrcImg] = useState('');
     const [visibleImg, setVisibleImg] = useState({ display: 'none' });
@@ -42,7 +42,7 @@ function AddMovie() {
             hinhAnh: {},
         },
         onSubmit: (values) => {
-            //console.log('values', values);
+            console.log('values', values);
             let formData = new FormData();
             for (let key in values) {
                 if (key !== 'hinhAnh') {
@@ -50,7 +50,7 @@ function AddMovie() {
                 }
                 formData.append('File', values.hinhAnh, values.hinhAnh.name);
             }
-            dispatch(actAddMovieUploadImage(formData));
+            dispatch(actAddMovieUploadImage(formData, props));
         },
     });
 

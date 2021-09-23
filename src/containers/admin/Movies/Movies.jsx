@@ -1,10 +1,12 @@
-import { Button, Input, Table, Typography, Space } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import React, { useEffect } from 'react';
-import { Fragment } from 'react';
+import { DeleteOutlined, EditOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import { Button, Input, Modal, Space, Table, Typography } from 'antd';
+import React, { Fragment, useEffect } from 'react';
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { actFetchAllMovie } from './module/action';
 import { NavLink } from 'react-router-dom';
+import { actDeleteMovie, actFetchAllMovie } from './module/action';
+
+const { confirm } = Modal;
 
 const { Search } = Input;
 const { Text, Title } = Typography;
@@ -19,6 +21,23 @@ function Movies(props) {
     useEffect(() => {
         //console.log('re-render movie list');
         dispatch(actFetchAllMovie());
+    }, []);
+
+    const showDeleteConfirm = useCallback((maPhim,props) => {
+        confirm({
+            title: 'Are you sure delete this task?',
+            icon: <ExclamationCircleOutlined />,
+            content: 'Some descriptions',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk() {
+                dispatch(actDeleteMovie(maPhim, props));
+            },
+            onCancel() {
+                console.log('Cancel');
+            },
+        });
     }, []);
 
     const columns = [
@@ -77,8 +96,10 @@ function Movies(props) {
             title: 'Hành động',
             dataIndex: 'hanhDong',
             render: (text, movie) => {
+                const maPhim = movie.maPhim;
+
                 return (
-                    <Fragment key={movie.maPhim}>
+                    <Fragment>
                         <div className="icons-list">
                             <Space>
                                 <NavLink key={1} to={`/admin/movies/edit/${movie.maPhim}`}>
@@ -86,11 +107,12 @@ function Movies(props) {
                                         <EditOutlined style={{ fontSize: 20 }} />
                                     </Text>
                                 </NavLink>
-                                <NavLink key={2} to="/admin/">
-                                    <Text type="danger">
-                                        <DeleteOutlined style={{ fontSize: 20 }} />
-                                    </Text>
-                                </NavLink>
+                                <Text type="danger">
+                                    <DeleteOutlined
+                                        style={{ fontSize: 20 }}
+                                        onClick={() => showDeleteConfirm(maPhim,props)}
+                                    />
+                                </Text>
                             </Space>
                         </div>
                     </Fragment>
@@ -116,7 +138,7 @@ function Movies(props) {
             <div style={{ margin: '15px 0' }} />
             <Search placeholder="input search text" onSearch={onSearch} enterButton />
             <div style={{ margin: '15px 0' }} />
-            <Table columns={columns} dataSource={data}/>
+            <Table columns={columns} dataSource={data} rowKey={'maPhim'} />
         </div>
     );
 }
