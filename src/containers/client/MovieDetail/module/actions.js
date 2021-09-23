@@ -11,7 +11,7 @@ export const actFetchMovieDetail = (movieId) => {
                     payload: res.data.content,
                 })
             )
-            .catch((err) => console.log(err));
+            //.catch((err) => console.log(err));
     };
 };
 
@@ -25,6 +25,6 @@ export const actFetchMovieShowTime = (movieId) => {
                     payload: res.data.content,
                 })
             )
-            .catch((err) => console.log(err));
+            //.catch((err) => console.log(err));
     };
 };

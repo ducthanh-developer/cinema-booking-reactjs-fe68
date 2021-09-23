@@ -12,45 +12,59 @@ import {
 } from 'antd';
 import { useFormik } from 'formik';
 import moment from 'moment';
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { actAddMovieUploadImage } from '../module/action';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { actEditMovieInfo, actFetchMovieInfo } from '../module/action';
+import { GROUP_ID } from 'settings/apiConfig';
 
 const { Title } = Typography;
 
-function AddMovie() {
+const dateFormat = 'DD-MM-YYYY';
+
+function EditMovie(props) {
     const [componentSize, setComponentSize] = useState('default');
     const [imageUrl, setSrcImg] = useState('');
-    const [visibleImg, setVisibleImg] = useState({ display: 'none' });
 
     const dispatch = useDispatch();
+    const { movieInfo } = useSelector((state) => state.movieAdminReducer);
+
+    useEffect(() => {
+        let { id } = props.match.params;
+        dispatch(actFetchMovieInfo(id));
+    }, []);
 
     const onFormLayoutChange = ({ size }) => {
         setComponentSize(size);
     };
 
     const formik = useFormik({
+        enableReinitialize: true,
         initialValues: {
-            tenPhim: '',
-            trailer: '',
-            moTa: '',
-            ngayKhoiChieu: '',
-            sapChieu: true,
-            dangChieu: true,
-            hot: true,
-            danhGia: 10,
-            hinhAnh: {},
+            maPhim: movieInfo.maPhim,
+            tenPhim: movieInfo.tenPhim,
+            trailer: movieInfo.trailer,
+            moTa: movieInfo.moTa,
+            ngayKhoiChieu: movieInfo.ngayKhoiChieu,
+            sapChieu: movieInfo.sapChieu,
+            dangChieu: movieInfo.dangChieu,
+            hot: movieInfo.hot,
+            danhGia: movieInfo.danhGia,
+            maNhom: GROUP_ID,
+            hinhAnh: null,
         },
         onSubmit: (values) => {
             //console.log('values', values);
             let formData = new FormData();
+            //console.log('values', values);
             for (let key in values) {
                 if (key !== 'hinhAnh') {
                     formData.append(key, values[key]);
                 }
-                formData.append('File', values.hinhAnh, values.hinhAnh.name);
+                key === 'ngayKhoiChieu' && formData.append(key, values[key]);
+                values.hinhAnh !== null &&
+                    formData.append('File', values.hinhAnh, values.hinhAnh.name);
             }
-            dispatch(actAddMovieUploadImage(formData));
+            dispatch(actEditMovieInfo(formData));
         },
     });
 
@@ -76,13 +90,10 @@ function AddMovie() {
 
     const handleFileChange = (e) => {
         //console.log(e);
-
         // get a file object in FileList
         let file = e.target.files[0] || '';
-
         // create a FileReader object to read file
         let readerFile = new FileReader();
-
         // get url from file passed
         if (file && file.type.match('image.*')) {
             readerFile.readAsDataURL(file);
@@ -90,16 +101,14 @@ function AddMovie() {
             readerFile.onload = (e) => {
                 setSrcImg(e.target.result || '');
             };
-
             // set file data into formik
             formik.setFieldValue('hinhAnh', file);
-            setVisibleImg({ display: 'block' });
         }
     };
 
     return (
         <div>
-            <Title level={3}>Thêm mới phim</Title>
+            <Title level={3}>Thông tin phim</Title>
             <Form
                 labelCol={{
                     span: 4,
@@ -140,35 +149,52 @@ function AddMovie() {
                     <Input name="moTa" onChange={formik.handleChange} value={formik.values.moTa} />
                 </Form.Item>
                 <Form.Item label="Ngày khởi chiếu">
-                    <DatePicker format={'DD/MM/YYYY'} onChange={handleChangeDatePicker} />
+                    <DatePicker
+                        value={moment(
+                            formik.values.ngayKhoiChieu && formik.values.ngayKhoiChieu.slice(0, 10),
+                            dateFormat
+                        )}
+                        format={dateFormat}
+                        onChange={handleChangeDatePicker}
+                    />
                 </Form.Item>
                 <Form.Item label="Đang chiếu:" valuePropName="checked">
-                    <Switch onChange={handleChangeSwitch('dangChieu')} />
+                    <Switch
+                        onChange={handleChangeSwitch('dangChieu')}
+                        checked={formik.values.dangChieu}
+                    />
                 </Form.Item>
                 <Form.Item label="Sắp chiếu:" valuePropName="checked">
-                    <Switch onChange={handleChangeSwitch('sapChieu')} />
+                    <Switch
+                        onChange={handleChangeSwitch('sapChieu')}
+                        checked={formik.values.sapChieu}
+                    />
                 </Form.Item>
                 <Form.Item label="Hot:" valuePropName="checked">
-                    <Switch onChange={handleChangeSwitch('hot')} />
+                    <Switch onChange={handleChangeSwitch('hot')} checked={formik.values.hot} />
                 </Form.Item>
                 <Form.Item label="Số sao:">
-                    <InputNumber onChange={handleChangeInputNumber('danhGia')} min={1} max={10} />
+                    <InputNumber
+                        onChange={handleChangeInputNumber('danhGia')}
+                        min={1}
+                        max={10}
+                        value={formik.values.danhGia}
+                    />
                 </Form.Item>
 
                 <Form.Item label="Hình ảnh">
-                    <input type="file" onChange={handleFileChange} accept="image/*" />
+                    <input type="file" accept="image/*" onChange={handleFileChange} />
                     <br />
                     <img
-                        src={imageUrl}
+                        src={!imageUrl ? movieInfo.hinhAnh : imageUrl}
                         alt={imageUrl}
                         width={150}
                         height={150}
-                        style={visibleImg}
                     />
                 </Form.Item>
                 <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
                     <Button type="primary" htmlType="submit">
-                        Thêm phim
+                        Cập nhật phim
                     </Button>
                 </Form.Item>
             </Form>
@@ -176,4 +202,4 @@ function AddMovie() {
     );
 }
 
-export default AddMovie;
+export default EditMovie;

@@ -35,6 +35,6 @@ export const actFetchUserInfo = () => {
                     dispatch({ type: FETCH_USER_INFO, payload: res.data.content });
                 }
             })
-            .catch((err) => console.log(err));
+            //.catch((err) => console.log(err));
     };
 };

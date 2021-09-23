@@ -16,7 +16,7 @@ const movieApi = {
     },
 
     fetchMovieShowtimeApi(movieId) {
-        return callApi(`/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${movieId}`);
+        return callApi(`QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${movieId}`);
     },
 
     loginApi(userInfo) {
@@ -40,7 +40,13 @@ const movieApi = {
     },
     addMovieUploadImage(formData){
         return callApi('QuanLyPhim/ThemPhimUploadHinh', 'POST', formData);
-    }
+    },
+    fetchMovieInfoApi(maPhim) {
+        return callApi(`QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`);
+    },
+    editMovieInfoApi(formData) {
+        return callApi('QuanLyPhim/CapNhatPhimUpload', 'POST', formData);
+    },
 };
 
 export default movieApi;

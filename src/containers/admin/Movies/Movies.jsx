@@ -14,10 +14,10 @@ function Movies(props) {
 
     const dispatch = useDispatch();
 
-    console.log('danh sach phim: ', movieList);
+    //console.log('danh sach phim: ', movieList);
 
     useEffect(() => {
-        console.log('re-render movie list');
+        //console.log('re-render movie list');
         dispatch(actFetchAllMovie());
     }, []);
 
@@ -34,7 +34,7 @@ function Movies(props) {
             dataIndex: 'hinhAnh',
             render: (text, movie, index) => {
                 return (
-                    <Fragment>
+                    <Fragment key={movie.maPhim}>
                         <img
                             src={movie.hinhAnh}
                             alt={movie.hinhAnh}
@@ -67,7 +67,7 @@ function Movies(props) {
             dataIndex: 'moTa',
             render: (text, movie) => {
                 return (
-                    <Fragment>
+                    <Fragment key={movie.maPhim}>
                         {movie.moTa.length > 50 ? movie.moTa.substr(0, 50) + '...' : movie.moTa}
                     </Fragment>
                 );
@@ -76,17 +76,17 @@ function Movies(props) {
         {
             title: 'Hành động',
             dataIndex: 'hanhDong',
-            render: () => {
+            render: (text, movie) => {
                 return (
-                    <Fragment>
+                    <Fragment key={movie.maPhim}>
                         <div className="icons-list">
                             <Space>
-                                <NavLink to="/admin/movies/edit">
+                                <NavLink key={1} to={`/admin/movies/edit/${movie.maPhim}`}>
                                     <Text type="success">
                                         <EditOutlined style={{ fontSize: 20 }} />
                                     </Text>
                                 </NavLink>
-                                <NavLink to="/admin/">
+                                <NavLink key={2} to="/admin/">
                                     <Text type="danger">
                                         <DeleteOutlined style={{ fontSize: 20 }} />
                                     </Text>
@@ -103,10 +103,6 @@ function Movies(props) {
 
     const onSearch = (value) => console.log(value);
 
-    function onChange(pagination, filters, sorter, extra) {
-        console.log('params', pagination, filters, sorter, extra);
-    }
-
     const handleRouteToAddMoive = () => {
         props.history.push('/admin/movies/add-movie');
     };
@@ -120,7 +116,7 @@ function Movies(props) {
             <div style={{ margin: '15px 0' }} />
             <Search placeholder="input search text" onSearch={onSearch} enterButton />
             <div style={{ margin: '15px 0' }} />
-            <Table columns={columns} dataSource={data} onChange={onChange} key={movieList.maPhim} />
+            <Table columns={columns} dataSource={data}/>
         </div>
     );
 }

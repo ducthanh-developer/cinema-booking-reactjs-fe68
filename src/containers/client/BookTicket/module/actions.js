@@ -28,7 +28,7 @@ export const actBookTicket = (bookTicketInfo = new ThongTinDatVe()) => {
             .then(() => dispatch(actHideLoading))
             .then(() => dispatch(actFetchUserInfo()))
             .catch((err) => {
-                console.log(err);
+                //console.log(err);
                 dispatch(actHideLoading);
             });
     };
