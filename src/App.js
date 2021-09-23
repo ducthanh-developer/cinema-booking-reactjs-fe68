@@ -2,12 +2,9 @@ import Dashboard from 'containers/admin/Dashboard/Dashboard';
 import AddMovie from 'containers/admin/Movies/AddMovie/AddMovie';
 import Movies from 'containers/admin/Movies/Movies';
 import Showtime from 'containers/admin/Showtimes/Showtime';
-import Login from 'containers/client/User/Login/Login';
 import PageNotFound from 'containers/shared/PageNotFound/PageNotFound';
 import { createBrowserHistory } from 'history';
 import AdminLayout from 'layouts/AdminLayout/AdminLayout';
-import BookTicketLayout from 'layouts/BookTicketLayout';
-import ClientLayout from 'layouts/ClientLayout';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { clientRoutes, ticketRoutes, userRoutes } from 'routes';
 import { Suspense, lazy } from 'react';
@@ -33,6 +30,7 @@ function App() {
     return (
         <div className="App">
             <Router history={history}>
+                <Loading />
                 <Switch>
                     <Suspense fallback={<Loading />}>
                         {renderRoutes(clientRoutes, ClientLayoutLazy)}

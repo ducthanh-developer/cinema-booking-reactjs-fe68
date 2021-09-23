@@ -5,8 +5,6 @@ import {
 
 const initialState = {
     listMovie: [],
-    errors: {},
-    isLoading: false,
     listTheaterSystem: [],
 };
 

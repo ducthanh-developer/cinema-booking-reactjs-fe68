@@ -17,7 +17,6 @@ class MovieDetail extends PureComponent {
     renderShowtime = () => {
         const { movieShowtime } = this.props;
         const { TabPane } = Tabs;
-        console.log(movieShowtime);
         return movieShowtime.heThongRapChieu?.map((theaterSystem, index) => {
             return (
                 <Fragment key={index}>
