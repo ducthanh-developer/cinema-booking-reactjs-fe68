@@ -9,18 +9,22 @@ if (localStorage.getItem(USER_LOGIN)) {
 
 const initialState = {
     userLogin: user,
-    userInfo: {thongTinDatVe: [{tenPhim: 'lật mặt 48h'}, 2]},
+    userInfo: { thongTinDatVe: [{ tenPhim: 'lật mặt 48h' }, 2] },
 };
 
 export const clientUserReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case LOGIN_ACTION:
+        case LOGIN_ACTION: {
             localStorage.setItem(USER_LOGIN, JSON.stringify(payload));
             localStorage.setItem(TOKEN, payload.accessToken);
             return { ...state, userLogin: payload };
-        case FETCH_USER_INFO:
+        }
+
+        case FETCH_USER_INFO: {
             state.userInfo = payload;
             return { ...state };
+        }
+
         default:
             return state;
     }

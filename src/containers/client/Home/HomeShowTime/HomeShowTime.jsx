@@ -77,10 +77,10 @@ class HomeShowTime extends PureComponent {
                                                                 .slice(0, 12)
                                                                 .map((showtime, index) => {
                                                                     return (
-                                                                        <Link to={`checkout/${showtime.maLichChieu}`}>
+                                                                        <Link to={`checkout/${showtime.maLichChieu}`}  key={index}>
                                                                         <Button
                                                                             className="m-2"
-                                                                            key={index}
+                                                                           
                                                                         >
                                                                             {moment(
                                                                                 showtime.ngayChieuGioChieu

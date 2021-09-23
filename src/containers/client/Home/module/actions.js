@@ -1,30 +1,41 @@
 import movieApi from 'apis/movieApi';
+import { actDisplayLoading, actHideLoading } from 'components/Loading/module/actions';
 import { FETCH_ALL_MOVIE, SET_SHOWTIME_THEATER_SYSTEM } from './types';
 
 export const actFetchAllMovieApi = () => {
     return (dispatch) => {
+        dispatch(actDisplayLoading);
         movieApi
             .fecthAllMovieApi()
-            .then((response) =>
+            .then((response) => {
                 dispatch({
                     type: FETCH_ALL_MOVIE,
                     payload: response.data.content,
-                })
-            )
-            .catch((errors) => console.log(errors));
+                });
+            })
+            .then(() => dispatch(actHideLoading))
+            .catch((errors) => {
+                console.log(errors);
+                dispatch(actHideLoading);
+            });
     };
 };
 
 export const actFetchShowtimeTheaterSystem = () => {
     return (dispatch) => {
+        dispatch(actDisplayLoading);
         movieApi
             .fetchShowtimeTheaterSystemApi()
-            .then((res) =>
+            .then((res) => {
                 dispatch({
                     type: SET_SHOWTIME_THEATER_SYSTEM,
                     payload: res.data.content,
-                })
-            )
-            .catch((err) => console.log(err));
+                });
+            })
+            .then(() => dispatch(actHideLoading))
+            .catch((err) => {
+                console.log(err);
+                dispatch(actHideLoading);
+            });
     };
 };

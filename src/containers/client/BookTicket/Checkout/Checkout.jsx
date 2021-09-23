@@ -4,7 +4,7 @@ import { actBookTicket, actFetchTicketOfficeList } from '../module/actions';
 import './Checkout.scss';
 import moment from 'moment';
 import { CloseOutlined } from '@ant-design/icons';
-import { BOOK_TICKET } from '../module/types';
+import { BOOK_TICKET} from '../module/types';
 import _ from 'lodash';
 import { ThongTinDatVe } from '_core/models/ThongTinDatVe';
 import { Tabs } from 'antd';
@@ -35,8 +35,8 @@ function Checkout(props) {
             if (seatBooking !== -1) {
                 seatImg = 3;
             } else {
-                seatImg = seat.loaiGhe == 'Vip' ? 4 : 5;
-                seatImg = seat.daDat == true ? 1 : seatImg;
+                seatImg = seat.loaiGhe === 'Vip' ? 4 : 5;
+                seatImg = seat.daDat === true ? 1 : seatImg;
                 // seatImg = seat.taiKhoanNguoiDat == userLogin.taiKhoan ? 6 : seatImg;
             }
             return (
@@ -132,7 +132,7 @@ function Checkout(props) {
                                         </span>
                                     </div>
 
-                                    <span className="nameSeat">Ghế đã có người chọn</span>
+                                    <span className="nameSeat">Ghế đã có người đặt</span>
                                 </span>
                                 <span className="typeSeat">
                                     <img src="../img/seat/seat5.png" alt="true" />
@@ -225,10 +225,11 @@ function Checkout(props) {
 
 const { TabPane } = Tabs;
 
-export default function (props) {
+export default function CheckOutTab(props) {
+    const { tabActive } = useSelector((state) => state.clientTicketOfficeReducer);
     return (
         <>
-            <Tabs defaultActiveKey="1">
+            <Tabs defaultActiveKey="1" activeKey={tabActive}>
                 <TabPane
                     tab={
                         <div className="leftStep">
@@ -271,7 +272,6 @@ function BookTicketHistory(props) {
         dispatch(actFetchUserInfo);
     }, []);
     const renderTicketItem = () => {
-        
         return userInfo.thongTinDatVe?.map((ticket, index) => {
             const seats = _.first(ticket.danhSachGhe);
             return (
@@ -281,8 +281,9 @@ function BookTicketHistory(props) {
                         <div className="media-body order-2 order-lg-1">
                             <h5 className="mt-0 font-weight-bold mb-2">{ticket.tenPhim}</h5>
                             <p className="font-italic text-muted mb-0 small">
-                                Địa điểm: {seats?.tenHeThongRap} - {seats?.tenCumRap} - Ghế {ticket.danhSachGhe?.map((seat, index)=>{
-                                    return <p key={index}>{seat.tenGhe}</p>
+                                Địa điểm: {seats?.tenHeThongRap} - {seats?.tenCumRap} - Ghế{' '}
+                                {ticket.danhSachGhe?.map((seat, index) => {
+                                    return <p key={index}>{seat.tenGhe}</p>;
                                 })}
                             </p>
                             <div className="d-flex align-items-center justify-content-between mt-1">

@@ -1,3 +1,4 @@
+import Loading from 'components/Loading/Loading';
 import withLayout from 'hocs/withLayout';
 import React, { Fragment } from 'react';
 import { Redirect } from 'react-router';

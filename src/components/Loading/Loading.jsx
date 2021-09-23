@@ -1,18 +1,24 @@
-import React, { Component } from 'react';
+import React, { Fragment } from 'react';
 import './Loading.scss';
+import { useSelector } from 'react-redux';
 
-export default class Loading extends Component {
-    render() {
-        return (
-            <div className="screen">
-                <div class="loading">
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
+export default function Loading(props) {
+    const { isLoading } = useSelector((state) => state.loadingReducer);
+    return (
+        <Fragment>
+            {isLoading ? (
+                <div className="screen">
+                    <div className="loading">
+                        <div className="dot" />
+                        <div className="dot" />
+                        <div className="dot" />
+                        <div className="dot" />
+                        <div className="dot" />
+                    </div>
                 </div>
-            </div>
-        );
-    }
+            ) : (
+                ''
+            )}
+        </Fragment>
+    );
 }

@@ -6,8 +6,10 @@ import clientMovieReducer from 'containers/client/Home/module/reducer';
 import clientMovieDetailReducer from 'containers/client/MovieDetail/module/reducer';
 import { clientUserReducer } from 'containers/client/User/module/reducer';
 import { clientTicketOfficeReducer } from 'containers/client/BookTicket/module/reducer';
+import { loadingReducer } from 'components/Loading/module/reducer';
 const rootReducer = combineReducers({
     movieAdminReducer,
+    loadingReducer,
     clientMovieReducer,
     clientMovieDetailReducer,
     clientUserReducer,
