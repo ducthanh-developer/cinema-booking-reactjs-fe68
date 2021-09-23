@@ -38,7 +38,7 @@ const movieApi = {
     fetchUserInfoApi() {
         return callApi(`/QuanLyNguoiDung/ThongTinTaiKhoan`, 'POST');
     },
-    addMovieUploadImage(formData){
+    addMovieUploadImage(formData) {
         return callApi('QuanLyPhim/ThemPhimUploadHinh', 'POST', formData);
     },
     fetchMovieInfoApi(maPhim) {
@@ -46,6 +46,9 @@ const movieApi = {
     },
     editMovieInfoApi(formData) {
         return callApi('QuanLyPhim/CapNhatPhimUpload', 'POST', formData);
+    },
+    deleteMovieApi(maPhim) {
+        return callApi(`QuanLyPhim/XoaPhim?MaPhim=${maPhim}`, 'DELETE');
     },
 };
 

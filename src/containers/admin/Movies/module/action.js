@@ -1,4 +1,5 @@
 import movieApi from 'apis/movieApi';
+import { history } from 'App';
 import {
     FETCH_MOVIE_LIST_SUCCESS,
     FETCH_MOVIE_LIST_FAILED,
@@ -39,16 +40,18 @@ export const actFetchAllMovie = () => {
     };
 };
 
-export const actAddMovieUploadImage = (formData) => {
+export const actAddMovieUploadImage = (formData, props) => {
+    const tenPhimAdded = formData.get('tenPhim');
     return (dispatch) => {
         movieApi
             .addMovieUploadImage(formData)
             .then((res) => {
                 //console.log(res.data.content);
-                alert('Them phim thanh cong!!');
+                alert(`Thêm phim ${tenPhimAdded} thành công!!`);
+                props.history.push('/admin/movies');
             })
             .catch((err) => {
-                //console.log(err);
+                alert(err);
             });
     };
 };
@@ -65,7 +68,7 @@ export const actFetchMovieInfo = (maPhim) => {
             });
     };
 };
-export const actEditMovieInfo = (formData) => {
+export const actEditMovieInfo = (formData, props) => {
     return (dispatch) => {
         movieApi
             .editMovieInfoApi(formData)
@@ -73,9 +76,25 @@ export const actEditMovieInfo = (formData) => {
                 //console.log('call api');
                 //console.log(res);
                 alert('Cập nhật phim thành công!!');
+                dispatch(actFetchAllMovie());
+                props.history.push('/admin/movies');
             })
             .catch((err) => {
-                //console.log(err);
+                alert(err);
+            });
+    };
+};
+export const actDeleteMovie = (maPhim, props) => {
+    return (dispatch) => {
+        movieApi
+            .deleteMovieApi(maPhim)
+            .then((res) => {
+                dispatch(actFetchAllMovie());
+                props.history.push('/admin/movies');
+            })
+            .catch((err) => {
+                console.log(err);
+                alert(err);
             });
     };
 };

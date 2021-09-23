@@ -8,6 +8,7 @@ const initialState = {
     movieList: [],
     error: '',
     movieInfo: {},
+    isDelete: false,
 };
 
 function movieAdminReducer(state = initialState, { type, payload }) {
