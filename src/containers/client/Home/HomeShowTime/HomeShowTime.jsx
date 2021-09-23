@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { actFetchShowtimeTheaterSystem } from '../module/actions';
 import './HomeShowTime.scss';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 const { TabPane } = Tabs;
 
@@ -76,14 +77,16 @@ class HomeShowTime extends PureComponent {
                                                                 .slice(0, 12)
                                                                 .map((showtime, index) => {
                                                                     return (
+                                                                        <Link to={`checkout/${showtime.maLichChieu}`}  key={index}>
                                                                         <Button
                                                                             className="m-2"
-                                                                            key={index}
+                                                                           
                                                                         >
                                                                             {moment(
                                                                                 showtime.ngayChieuGioChieu
                                                                             ).format('hh:mm A')}
                                                                         </Button>
+                                                                        </Link>
                                                                     );
                                                                 })}
                                                         </div>
