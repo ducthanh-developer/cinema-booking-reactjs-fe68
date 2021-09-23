@@ -23,6 +23,10 @@ const movieApi = {
         return callApi('/QuanLyNguoiDung/DangNhap', 'POST', userInfo);
     },
 
+    registerApi(userInfo) {
+        return callApi('/QuanLyNguoiDung/DangKy', 'POST', userInfo);
+    },
+
     fetchTicketOfficeListApi(showtimeCode) {
         return callApi(`/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${showtimeCode}`);
     },

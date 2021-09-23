@@ -4,11 +4,12 @@ import { actBookTicket, actFetchTicketOfficeList } from '../module/actions';
 import './Checkout.scss';
 import moment from 'moment';
 import { CloseOutlined } from '@ant-design/icons';
-import { BOOK_TICKET} from '../module/types';
+import { BOOK_TICKET } from '../module/types';
 import _ from 'lodash';
 import { ThongTinDatVe } from '_core/models/ThongTinDatVe';
-import { Tabs } from 'antd';
+import { Tabs, Button } from 'antd';
 import { actFetchUserInfo } from 'containers/client/User/module/actions';
+import { Link } from 'react-router-dom';
 function Checkout(props) {
     const { userLogin } = useSelector((state) => state.clientUserReducer);
 
@@ -37,7 +38,7 @@ function Checkout(props) {
             } else {
                 seatImg = seat.loaiGhe === 'Vip' ? 4 : 5;
                 seatImg = seat.daDat === true ? 1 : seatImg;
-                // seatImg = seat.taiKhoanNguoiDat == userLogin.taiKhoan ? 6 : seatImg;
+                seatImg = seat.taiKhoanNguoiDat == userLogin.taiKhoan ? 6 : seatImg;
             }
             return (
                 <Fragment key={seat.maGhe}>
@@ -180,7 +181,7 @@ function Checkout(props) {
                             {_.sortBy(seatListAvailable, ['stt']).map((seat, index) => {
                                 return (
                                     <span className="totalChair" key={seat.maGhe}>
-                                        {seat.stt},{' '}
+                                        {seat.stt}{' '}
                                     </span>
                                 );
                             })}
@@ -226,10 +227,13 @@ function Checkout(props) {
 const { TabPane } = Tabs;
 
 export default function CheckOutTab(props) {
-    const { tabActive } = useSelector((state) => state.clientTicketOfficeReducer);
+    const operations = <Link to="/" className="navbar-brand mr-5">
+    <img src="../img/web-logo.png" alt="true" width={50} height={50}/>
+</Link>;
+    // const { tabActive } = useSelector((state) => state.clientTicketOfficeReducer);
     return (
         <>
-            <Tabs defaultActiveKey="1" activeKey={tabActive}>
+            <Tabs tabBarExtraContent={operations} defaultActiveKey="1" /** activeKey={tabActive} */>
                 <TabPane
                     tab={
                         <div className="leftStep">
@@ -269,7 +273,7 @@ function BookTicketHistory(props) {
     const { userInfo, userLogin } = useSelector((state) => state.clientUserReducer);
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(actFetchUserInfo);
+        dispatch(actFetchUserInfo());
     }, []);
     const renderTicketItem = () => {
         return userInfo.thongTinDatVe?.map((ticket, index) => {
@@ -280,23 +284,26 @@ function BookTicketHistory(props) {
                     <div className="media align-items-lg-center flex-column flex-lg-row p-3">
                         <div className="media-body order-2 order-lg-1">
                             <h5 className="mt-0 font-weight-bold mb-2">{ticket.tenPhim}</h5>
-                            <p className="font-italic text-muted mb-0 small">
-                                Địa điểm: {seats?.tenHeThongRap} - {seats?.tenCumRap} - Ghế{' '}
+                            <p className="font-italic text-muted mb-0">
+                                Địa điểm: <span className="spanText">{seats.tenHeThongRap} - {seats.tenCumRap}</span>
+                            </p>
+                            <p className="font-italic text-muted mb-0">
+                                Ghế:{' '}
                                 {ticket.danhSachGhe?.map((seat, index) => {
-                                    return <p key={index}>{seat.tenGhe}</p>;
+                                    return <span className="spanText" key={index}>{seat.tenGhe} </span>;
                                 })}
                             </p>
                             <div className="d-flex align-items-center justify-content-between mt-1">
                                 <h6 className="font-weight-bold my-2">
-                                    {moment(ticket.ngayDat).format('hh:mm A') -
-                                        moment(ticket.ngayDat).format('DD-MM-YYYY')}
+                                    {moment(ticket.ngayDat).format('hh:mm A')} - {moment(ticket.ngayDat).format('DD/MM/YYYY')}
                                 </h6>
                             </div>
                         </div>
                         <img
-                            src="https://picsum.photos/200"
+                            src={ticket.hinhAnh}
                             alt="Generic placeholder image"
-                            width={100}
+                            width={70}
+                            height={100}
                             className="ml-lg-5 order-1 order-lg-2"
                         />
                     </div>
@@ -313,12 +320,6 @@ function BookTicketHistory(props) {
                     <h1 className="display-6">Lịch sử đặt vé của bạn</h1>
                     <p className="lead mb-0" style={{ color: '#9b9b9b' }}>
                         Danh sách và thông tin chi tiết vé đã đặt, chúc bạn xem phim vui vẻ!
-                    </p>
-                    <p className="lead">
-                        Snippet by{' '}
-                        <a href="https://bootstrapious.com/snippets" className="text-white">
-                            <u>Bootstrapious</u>
-                        </a>
                     </p>
                 </div>
             </div>

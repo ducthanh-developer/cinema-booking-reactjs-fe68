@@ -10,7 +10,6 @@ import { clientRoutes, ticketRoutes, userRoutes } from 'routes';
 import { Suspense, lazy } from 'react';
 import './App.css';
 import Loading from 'components/Loading/Loading';
-
 const BookTicketLayoutLazy = lazy(() => import('layouts/BookTicketLayout'));
 const ClientLayoutLazy = lazy(() => import('layouts/ClientLayout'));
 const UserLayoutLazy = lazy(() => import('layouts/UserLayout'));
@@ -39,7 +38,7 @@ function App() {
                         <AdminLayout path="/admin/movies/add-movie" exact Component={AddMovie} />
                         <AdminLayout path="/admin/users" exact Component={Dashboard} />
                         <AdminLayout path="/admin/showtimes" exact Component={Showtime} />
-                        <Route path="*" component={PageNotFound} />
+                        {/* <Route path="*" component={PageNotFound} /> */}
                     </Suspense>
                 </Switch>
             </Router>
