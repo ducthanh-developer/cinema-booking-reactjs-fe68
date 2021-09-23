@@ -10,6 +10,7 @@
         "antd": "4.16.13",
         "axios": "0.21.1",
         "bootstrap": "4.6.0",
+        "core-js": "^3.18.0",
         "formik": "2.2.9",
         "history": "4.10.0",
         "jquery": "3.6.0",
