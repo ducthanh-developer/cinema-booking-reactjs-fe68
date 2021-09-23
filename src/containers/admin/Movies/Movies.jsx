@@ -17,6 +17,7 @@ function Movies(props) {
     console.log('danh sach phim: ', movieList);
 
     useEffect(() => {
+        console.log('re-render movie list');
         dispatch(actFetchAllMovie());
     }, []);
 
@@ -119,7 +120,7 @@ function Movies(props) {
             <div style={{ margin: '15px 0' }} />
             <Search placeholder="input search text" onSearch={onSearch} enterButton />
             <div style={{ margin: '15px 0' }} />
-            <Table columns={columns} dataSource={data} onChange={onChange} />
+            <Table columns={columns} dataSource={data} onChange={onChange} key={movieList.maPhim} />
         </div>
     );
 }

@@ -34,6 +34,9 @@ const movieApi = {
     fetchUserInfoApi() {
         return callApi(`/QuanLyNguoiDung/ThongTinTaiKhoan`, 'POST');
     },
+    addMovieUploadImage(formData){
+        return callApi('QuanLyPhim/ThemPhimUploadHinh', 'POST', formData);
+    }
 };
 
 export default movieApi;

@@ -1,5 +1,5 @@
 import movieApi from 'apis/movieApi';
-import { FETCH_MOVIE_LIST_SUCCESS, FETCH_MOVIE_LIST_FAILED } from './types';
+import { FETCH_MOVIE_LIST_SUCCESS, FETCH_MOVIE_LIST_FAILED, ADD_MOVIE_UPLOAD_IMGAGE_SUCCESS } from './types';
 
 const actFetchAllMovieSucess = (movieList) => {
     return {
@@ -14,6 +14,7 @@ const actFetchAllMovieFailed = (err) => {
     };
 };
 
+
 // async action
 export const actFetchAllMovie = () => {
     return (dispatch) => {
@@ -26,6 +27,20 @@ export const actFetchAllMovie = () => {
             })
             .catch((err) => {
                 dispatch(actFetchAllMovieFailed(err));
+            });
+    };
+};
+
+export const actAddMovieUploadImage = (formData) => {
+    return (dispatch) => {
+        movieApi
+            .addMovieUploadImage(formData)
+            .then((res) => {
+                console.log(res.data.content);
+                alert('Them phim thanh cong!!');
+            })
+            .catch((err) => {
+                console.log(err.data.content);
             });
     };
 };

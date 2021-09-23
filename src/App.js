@@ -34,13 +34,13 @@ function App() {
                         {renderRoutes(clientRoutes, ClientLayoutLazy)}
                         {renderRoutes(ticketRoutes, BookTicketLayoutLazy)}
                         {renderRoutes(userRoutes, UserLayoutLazy)}
+                        <AdminLayout path="/admin" exact Component={Dashboard} />
+                        <AdminLayout path="/admin/movies" exact Component={Movies} />
+                        <AdminLayout path="/admin/movies/add-movie" exact Component={AddMovie} />
+                        <AdminLayout path="/admin/users" exact Component={Dashboard} />
+                        <AdminLayout path="/admin/showtimes" exact Component={Showtime} />
+                        <Route path="*" component={PageNotFound} />
                     </Suspense>
-                    <AdminLayout path="/admin" exact Component={Dashboard} />
-                    <AdminLayout path="/admin/movies" exact Component={Movies} />
-                    <AdminLayout path="/admin/movies/add-movie" exact Component={AddMovie} />
-                    <AdminLayout path="/admin/users" exact Component={Dashboard} />
-                    <AdminLayout path="/admin/showtimes" exact Component={Showtime} />
-                    <Route path="*" component={PageNotFound} />
                 </Switch>
             </Router>
         </div>
