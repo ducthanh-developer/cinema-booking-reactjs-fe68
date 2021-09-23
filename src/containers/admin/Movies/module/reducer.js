@@ -1,8 +1,13 @@
-import { FETCH_MOVIE_LIST_SUCCESS, FETCH_MOVIE_LIST_FAILED } from './types';
+import {
+    FETCH_MOVIE_LIST_SUCCESS,
+    FETCH_MOVIE_LIST_FAILED,
+    FETCH_MOVIE_INFO_SUCCESS,
+} from './types';
 
 const initialState = {
     movieList: [],
-    error:'',
+    error: '',
+    movieInfo: {},
 };
 
 function movieAdminReducer(state = initialState, { type, payload }) {
@@ -12,6 +17,9 @@ function movieAdminReducer(state = initialState, { type, payload }) {
         }
         case FETCH_MOVIE_LIST_FAILED: {
             return { ...state, error: payload };
+        }
+        case FETCH_MOVIE_INFO_SUCCESS: {
+            return { ...state, movieInfo: payload };
         }
         default:
             return state;

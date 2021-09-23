@@ -14,6 +14,7 @@ import { Suspense, lazy } from 'react';
 import './App.css';
 import Loading from 'components/Loading/Loading';
 import UserLayout from 'layouts/UserLayout';
+import EditMovie from 'containers/admin/Movies/EditMovie/EditMovie';
 
 const BookTicketLayoutLazy = lazy(() => import('layouts/BookTicketLayout'));
 const ClientLayoutLazy = lazy(() => import('layouts/ClientLayout'));
@@ -40,6 +41,7 @@ function App() {
                         <AdminLayout path="/admin" exact Component={Dashboard} />
                         <AdminLayout path="/admin/movies" exact Component={Movies} />
                         <AdminLayout path="/admin/movies/add-movie" exact Component={AddMovie} />
+                        <AdminLayout path="/admin/movies/edit/:id" exact Component={EditMovie} />
                         <AdminLayout path="/admin/users" exact Component={Dashboard} />
                         <AdminLayout path="/admin/showtimes" exact Component={Showtime} />
                         <Route path="*" component={PageNotFound} />

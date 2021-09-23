@@ -76,17 +76,17 @@ function Movies(props) {
         {
             title: 'Hành động',
             dataIndex: 'hanhDong',
-            render: () => {
+            render: (text, movie) => {
                 return (
                     <Fragment>
                         <div className="icons-list">
                             <Space>
-                                <NavLink to="/admin/movies/edit">
+                                <NavLink key={1} to={`/admin/movies/edit/${movie.maPhim}`}>
                                     <Text type="success">
                                         <EditOutlined style={{ fontSize: 20 }} />
                                     </Text>
                                 </NavLink>
-                                <NavLink to="/admin/">
+                                <NavLink key={2} to="/admin/">
                                     <Text type="danger">
                                         <DeleteOutlined style={{ fontSize: 20 }} />
                                     </Text>

@@ -1,5 +1,9 @@
 import movieApi from 'apis/movieApi';
-import { FETCH_MOVIE_LIST_SUCCESS, FETCH_MOVIE_LIST_FAILED, ADD_MOVIE_UPLOAD_IMGAGE_SUCCESS } from './types';
+import {
+    FETCH_MOVIE_LIST_SUCCESS,
+    FETCH_MOVIE_LIST_FAILED,
+    FETCH_MOVIE_INFO_SUCCESS,
+} from './types';
 
 const actFetchAllMovieSucess = (movieList) => {
     return {
@@ -13,7 +17,12 @@ const actFetchAllMovieFailed = (err) => {
         payload: err,
     };
 };
-
+const actFetchMovieInfoSucess = (movieInfo) => {
+    return {
+        type: FETCH_MOVIE_INFO_SUCCESS,
+        payload: movieInfo,
+    };
+};
 
 // async action
 export const actFetchAllMovie = () => {
@@ -22,7 +31,6 @@ export const actFetchAllMovie = () => {
         movieApi
             .fecthAllMovieApi()
             .then((res) => {
-                console.log(res.data.content);
                 dispatch(actFetchAllMovieSucess(res.data.content));
             })
             .catch((err) => {
@@ -40,7 +48,34 @@ export const actAddMovieUploadImage = (formData) => {
                 alert('Them phim thanh cong!!');
             })
             .catch((err) => {
-                console.log(err.data.content);
+                console.log(err);
+            });
+    };
+};
+export const actFetchMovieInfo = (maPhim) => {
+    return (dispatch) => {
+        movieApi
+            .fetchMovieInfoApi(maPhim)
+            .then((res) => {
+                console.log(res.data.content);
+                dispatch(actFetchMovieInfoSucess(res.data.content));
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+};
+export const actEditMovieInfo = (formData) => {
+    return (dispatch) => {
+        movieApi
+            .editMovieInfoApi(formData)
+            .then((res) => {
+                console.log('call api');
+                console.log(res);
+                alert('Cập nhật phim thành công!!');
+            })
+            .catch((err) => {
+                console.log(err);
             });
     };
 };
