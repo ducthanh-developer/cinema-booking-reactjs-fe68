@@ -42,7 +42,7 @@ function AddMovie() {
             hinhAnh: {},
         },
         onSubmit: (values) => {
-            console.log('values', values);
+            //console.log('values', values);
             let formData = new FormData();
             for (let key in values) {
                 if (key !== 'hinhAnh') {

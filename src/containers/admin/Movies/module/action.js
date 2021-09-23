@@ -44,11 +44,11 @@ export const actAddMovieUploadImage = (formData) => {
         movieApi
             .addMovieUploadImage(formData)
             .then((res) => {
-                console.log(res.data.content);
+                //console.log(res.data.content);
                 alert('Them phim thanh cong!!');
             })
             .catch((err) => {
-                console.log(err);
+                //console.log(err);
             });
     };
 };
@@ -57,11 +57,11 @@ export const actFetchMovieInfo = (maPhim) => {
         movieApi
             .fetchMovieInfoApi(maPhim)
             .then((res) => {
-                console.log(res.data.content);
+                //console.log(res.data.content);
                 dispatch(actFetchMovieInfoSucess(res.data.content));
             })
             .catch((err) => {
-                console.log(err);
+                //console.log(err);
             });
     };
 };
@@ -70,12 +70,12 @@ export const actEditMovieInfo = (formData) => {
         movieApi
             .editMovieInfoApi(formData)
             .then((res) => {
-                console.log('call api');
-                console.log(res);
+                //console.log('call api');
+                //console.log(res);
                 alert('Cập nhật phim thành công!!');
             })
             .catch((err) => {
-                console.log(err);
+                //console.log(err);
             });
     };
 };

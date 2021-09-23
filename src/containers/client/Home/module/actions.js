@@ -15,7 +15,7 @@ export const actFetchAllMovieApi = () => {
             })
             .then(() => dispatch(actHideLoading))
             .catch((errors) => {
-                console.log(errors);
+                //console.log(errors);
                 dispatch(actHideLoading);
             });
     };
@@ -34,7 +34,7 @@ export const actFetchShowtimeTheaterSystem = () => {
             })
             .then(() => dispatch(actHideLoading))
             .catch((err) => {
-                console.log(err);
+                //console.log(err);
                 dispatch(actHideLoading);
             });
     };

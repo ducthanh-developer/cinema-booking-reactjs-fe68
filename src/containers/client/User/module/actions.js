@@ -10,7 +10,7 @@ export const actLogin = (userInfo) => {
                 dispatch({ type: LOGIN_ACTION, payload: res.data.content });
                 history.goBack();
             })
-            .catch((err) => console.log(err));
+            //.catch((err) => console.log(err));
     };
 };
 
@@ -21,6 +21,6 @@ export const actFetchUserInfo = () => {
             .then((res) => {
                 dispatch({ type: FETCH_USER_INFO, payload: res.data.content });
             })
-            .catch((err) => console.log(err));
+            //.catch((err) => console.log(err));
     };
 };

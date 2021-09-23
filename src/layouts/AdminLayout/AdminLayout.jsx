@@ -13,7 +13,7 @@ function AdminLayout(props) {
     const [collapsed, setCollapsed] = useState(false);
 
     const onCollapse = (collapsed) => {
-        console.log(collapsed);
+        //console.log(collapsed);
         setCollapsed(collapsed);
     };
 
@@ -21,7 +21,7 @@ function AdminLayout(props) {
         <Route
             {...restProps}
             render={(propsRoute) => {
-                console.log(propsRoute); // history, location, match
+                //console.log(propsRoute); // history, location, match
                 return (
                     <Fragment>
                         <Layout style={{ minHeight: '100vh' }}>
@@ -49,7 +49,7 @@ function AdminLayout(props) {
                                             </NavLink>
                                         </Menu.Item>
                                     </SubMenu>
-                                    
+
                                     <Menu.Item key="9" icon={<FileOutlined />}>
                                         <NavLink to="/admin/showtimes">Showtimes</NavLink>
                                     </Menu.Item>

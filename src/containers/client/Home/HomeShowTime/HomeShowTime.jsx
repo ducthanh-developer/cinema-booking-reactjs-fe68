@@ -57,7 +57,7 @@ class HomeShowTime extends PureComponent {
                                             }
                                             key={index}
                                         >
-                                            {theater.danhSachPhim.slice(0, 3).map((film, index) => {
+                                            {theater.danhSachPhim.slice(0, 3).map((film) => {
                                                 return (
                                                     <Fragment key={film.maPhim}>
                                                         <div className="d-flex complex-theater mb-2">
