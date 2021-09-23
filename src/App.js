@@ -42,7 +42,7 @@ function App() {
                         <AdminLayout path="/admin/movies/edit/:id" exact Component={EditMovie} />
                         <AdminLayout path="/admin/users" exact Component={Dashboard} />
                         <AdminLayout path="/admin/showtimes" exact Component={Showtime} />
-                        <Route path="*" component={PageNotFound} />
+                        {/* <Route path="*" component={PageNotFound} /> */}
                     </Suspense>
                 </Switch>
             </Router>

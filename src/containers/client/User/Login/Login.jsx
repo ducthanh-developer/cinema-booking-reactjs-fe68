@@ -8,8 +8,6 @@ import './Login.scss';
 export default function Login(props) {
     const dispatch = useDispatch();
 
-    const { userLogin } = useSelector((state) => state.clientUserReducer);
-
     const formik = useFormik({
         initialValues: {
             taiKhoan: '',
@@ -25,40 +23,39 @@ export default function Login(props) {
             <h1 className="login-title">Đăng nhập</h1>
             <form onSubmit={formik.handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="taiKhoan">Tài khoản</label>
+                    <label>Tài khoản</label>
                     <input
                         type="text"
                         name="taiKhoan"
                         onChange={formik.handleChange}
-                        id="taiKhoan"
                         className="form-control"
                         placeholder="Nhập vào tài khoản"
+                        required
                     />
                 </div>
                 <div className="form-group mb-4">
-                    <label htmlFor="password">Mật khẩu</label>
+                    <label>Mật khẩu</label>
                     <input
                         type="password"
                         name="matKhau"
-                        id="matKhau"
                         className="form-control"
                         placeholder="Nhập vào mật khẩu"
                         onChange={formik.handleChange}
+                        required
                     />
                 </div>
                 <input
                     name="login"
-                    id="login"
                     className="btn btn-block login-btn"
                     type="submit"
-                    defaultValue="Đăng nhập"
+                    value="Đăng nhập"
                 />
             </form>
             <a href="#!" className="forgot-password-link">
                 Quên mật khẩu?
             </a>
             <p className="login-wrapper-footer-text">
-                Chưa có tài khoản?
+                Chưa có tài khoản?{' '}
                 <Link to="/register" className="text-reset">
                     Đăng ký
                 </Link>

@@ -9,7 +9,7 @@ if (localStorage.getItem(USER_LOGIN)) {
 
 const initialState = {
     userLogin: user,
-    userInfo: { thongTinDatVe: [{ tenPhim: 'lật mặt 48h' }, 2] },
+    userInfo: {},
 };
 
 export const clientUserReducer = (state = initialState, { type, payload }) => {

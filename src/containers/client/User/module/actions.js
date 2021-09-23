@@ -8,9 +8,21 @@ export const actLogin = (userInfo) => {
             .loginApi(userInfo)
             .then((res) => {
                 dispatch({ type: LOGIN_ACTION, payload: res.data.content });
+                history.push('/');
+                window.location.reload();
+            })
+            .catch((err) => alert(err.response.data.content));
+    };
+};
+
+export const actRegister = (userInfo) => {
+    return (dispatch) => {
+        movieApi
+            .registerApi(userInfo)
+            .then((res) => {
                 history.goBack();
             })
-            //.catch((err) => console.log(err));
+            .catch((err) => alert(err.response.data.content));
     };
 };
 
@@ -19,7 +31,9 @@ export const actFetchUserInfo = () => {
         movieApi
             .fetchUserInfoApi()
             .then((res) => {
-                dispatch({ type: FETCH_USER_INFO, payload: res.data.content });
+                {
+                    dispatch({ type: FETCH_USER_INFO, payload: res.data.content });
+                }
             })
             //.catch((err) => console.log(err));
     };

@@ -1,5 +1,6 @@
 import movieApi from 'apis/movieApi';
 import { actDisplayLoading, actHideLoading } from 'components/Loading/module/actions';
+import { actFetchUserInfo } from 'containers/client/User/module/actions';
 import { ThongTinDatVe } from '_core/models/ThongTinDatVe';
 import { BOOK_TICKET, BOOK_TICKET_SUCCESS, FETCH_TICKET_OFFICE_LIST, SWITCH_TAB } from './types';
 
@@ -25,7 +26,7 @@ export const actBookTicket = (bookTicketInfo = new ThongTinDatVe()) => {
             })
             .then(() => dispatch(actFetchTicketOfficeList(bookTicketInfo.maLichChieu)))
             .then(() => dispatch(actHideLoading))
-            .then(() => dispatch({ type: SWITCH_TAB }))
+            .then(() => dispatch(actFetchUserInfo()))
             .catch((err) => {
                 //console.log(err);
                 dispatch(actHideLoading);

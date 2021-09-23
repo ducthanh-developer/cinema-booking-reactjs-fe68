@@ -3,6 +3,7 @@ import Home from 'containers/client/Home/Home';
 import Login from 'containers/client/User/Login/Login';
 import MovieDetail from 'containers/client/MovieDetail/MovieDetail';
 import Register from 'containers/client/User/Register/Register';
+import Profile from 'containers/client/User/Profile/Profile';
 
 export const clientRoutes = [
     {
@@ -15,6 +16,12 @@ export const clientRoutes = [
         component: MovieDetail,
         exact: false,
     },
+    {
+        path: '/profile',
+        component: Profile,
+        exact: false,
+    },
+
 ];
 
 export const ticketRoutes = [

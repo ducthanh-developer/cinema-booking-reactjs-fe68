@@ -1,0 +1,25 @@
+.userSetting {
+    display: none;
+    position: absolute;
+    right: 0;
+    width: 120px;
+    text-align: center;
+    background-color: #959595;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    .userLogout {
+        margin: 0;
+        padding: 5px;
+        transition: background-color 0.2s ease;
+        border-radius: 4px;
+    }
+}
+
+.bar{
+    &:hover{
+        .userSetting{
+            display: block;
+        }
+    }
+}

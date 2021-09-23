@@ -1,13 +1,15 @@
-import Loading from 'components/Loading/Loading';
 import withLayout from 'hocs/withLayout';
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Redirect } from 'react-router';
 import { USER_LOGIN } from 'settings/apiConfig';
 
 function BookTicketLayout(props) {
-    // if (!localStorage.getItem(USER_LOGIN)) {
-    //     return <Redirect to="/login" />;
-    // }
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    });
+    if (!localStorage.getItem(USER_LOGIN)) {
+        return <Redirect to="/login" />;
+    }
     return (
         <Fragment>
             {props.children}
