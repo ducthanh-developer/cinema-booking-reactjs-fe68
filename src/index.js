@@ -1,4 +1,3 @@
-import "@fancyapps/ui/dist/fancybox.css";
 import 'antd/dist/antd.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap';
@@ -9,6 +8,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import 'react-modal-video/scss/modal-video.scss';
 import store from 'store';
 import App from './App';
 import './index.css';

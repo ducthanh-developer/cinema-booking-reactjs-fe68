@@ -12,6 +12,11 @@ export const clientRoutes = [
         exact: true,
     },
     {
+        path: '/home',
+        component: Home,
+        exact: true,
+    },
+    {
         path: '/movie-detail/:movieId',
         component: MovieDetail,
         exact: false,

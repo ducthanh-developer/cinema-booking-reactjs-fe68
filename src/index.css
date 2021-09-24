@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 * {
     padding: 0;
@@ -1017,12 +1018,13 @@ footer .footer__content .footer__bot .image {
 
 .products__bot .tab-content .desktop .products__item .products__thumbnail .products__overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
     border-radius: 4px;
-    background-color: rgba(0, 0, 0, 0.2);
+    /* background-color: rgba(0, 0, 0, 0.2); */
     opacity: 0;
     -webkit-transition: all 0.2s;
     transition: all 0.2s;
@@ -1796,6 +1798,7 @@ footer .footer__content .footer__bot .image {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
+    align-items: center;
     padding: 0;
 }
 
