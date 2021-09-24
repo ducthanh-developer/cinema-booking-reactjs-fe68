@@ -1,14 +1,29 @@
-import React, { Component, PureComponent } from 'react';
+import React, { Component, Fragment, PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { actFetchAllMovieApi } from '../module/actions';
 import Slider from 'react-slick';
 import moment from 'moment';
 import { Rate } from 'antd';
+import ModalVideo from 'react-modal-video';
 import './MovieList.scss';
+import _ from 'lodash';
 class MovieList extends PureComponent {
     componentDidMount() {
         this.props.fetchAllMovie();
+    }
+
+    constructor() {
+        super();
+        this.state = {
+            isOpen: false,
+            videoId: '',
+        };
+        this.openModal = this.openModal.bind(this);
+    }
+
+    openModal(videoId) {
+        this.setState({ isOpen: true, videoId });
     }
 
     renderListMovieShowing = () =>
@@ -17,9 +32,11 @@ class MovieList extends PureComponent {
                 return (
                     <div className="products__item" key={movie.maPhim}>
                         <div className="products__thumbnail">
-                            <div className="products__image">
-                                <img src={movie.hinhAnh} alt={movie.biDanh} />
-                            </div>
+                            <Link to={`/movie-detail/${movie.maPhim}`}>
+                                <div className="products__image">
+                                    <img src={movie.hinhAnh} alt={movie.biDanh} />
+                                </div>
+                            </Link>
                             <span className="products__review">
                                 <p>{movie.danhGia}</p>
                                 <Rate
@@ -29,18 +46,18 @@ class MovieList extends PureComponent {
                                     style={{ fontSize: '8px', color: 'red' }}
                                 ></Rate>
                             </span>
-                            <Link to={`/movie-detail/${movie.maPhim}`}>
-                                <div className="products__overlay">
-                                    <button
-                                        className="products__overlay--btn"
-                                        data-fancybox
-                                        data-type="iframe"
-                                        data-src={movie.trailer}
-                                    >
-                                        <img src="./img/play-video.png" />
-                                    </button>
-                                </div>
-                            </Link>
+                            {/* <Link to={`/movie-detail/${movie.maPhim}`}> */}
+                            <div className="products__overlay">
+                                <button
+                                    className="products__overlay--btn"
+                                    onClick={() =>
+                                        this.openModal(`${_.last(_.split(movie.trailer, '/'))}`)
+                                    }
+                                >
+                                    <img src="./img/play-video.png" />
+                                </button>
+                            </div>
+                            {/* </Link> */}
                         </div>
                         <div className="products__title">
                             <span className="icon">P</span>
@@ -143,62 +160,70 @@ class MovieList extends PureComponent {
             prevArrow: <SamplePrevArrow />,
         };
         return (
-            <div className="products__bot">
-                <ul
-                    className="nav nav-tabs justify-content-center align-items-center"
-                    id="myTab"
-                    role="tablist"
-                >
-                    <li className="nav-item" role="presentation">
-                        <a
-                            className="nav-link active"
-                            id="home-tab"
-                            data-toggle="tab"
-                            href="#home"
-                            role="tab"
-                            aria-controls="home"
-                            aria-selected="true"
-                        >
-                            Đang Chiếu
-                        </a>
-                    </li>
-                    <li className="nav-item" role="presentation">
-                        <a
-                            className="nav-link"
-                            id="profile-tab"
-                            data-toggle="tab"
-                            href="#profile"
-                            role="tab"
-                            aria-controls="profile"
-                            aria-selected="false"
-                        >
-                            Sắp Chiếu
-                        </a>
-                    </li>
-                </ul>
-                <div className="tab-content" id="myTabContent">
-                    <div
-                        className="tab-pane fade show active"
-                        id="home"
-                        role="tabpanel"
-                        aria-labelledby="home-tab"
+            <Fragment>
+                <ModalVideo
+                    channel="youtube"
+                    isOpen={this.state.isOpen}
+                    videoId={this.state.videoId}
+                    onClose={() => this.setState({ isOpen: false })}
+                />
+                <div className="products__bot">
+                    <ul
+                        className="nav nav-tabs justify-content-center align-items-center"
+                        id="myTab"
+                        role="tablist"
                     >
-                        <div className="desktop presentFilms">
-                            <Slider {...settings}>{this.renderListMovieShowing()}</Slider>
+                        <li className="nav-item" role="presentation">
+                            <a
+                                className="nav-link active"
+                                id="home-tab"
+                                data-toggle="tab"
+                                href="#home"
+                                role="tab"
+                                aria-controls="home"
+                                aria-selected="true"
+                            >
+                                Đang Chiếu
+                            </a>
+                        </li>
+                        <li className="nav-item" role="presentation">
+                            <a
+                                className="nav-link"
+                                id="profile-tab"
+                                data-toggle="tab"
+                                href="#profile"
+                                role="tab"
+                                aria-controls="profile"
+                                aria-selected="false"
+                            >
+                                Sắp Chiếu
+                            </a>
+                        </li>
+                    </ul>
+                    <div className="tab-content" id="myTabContent">
+                        <div
+                            className="tab-pane fade show active"
+                            id="home"
+                            role="tabpanel"
+                            aria-labelledby="home-tab"
+                        >
+                            <div className="desktop presentFilms">
+                                <Slider {...settings}>{this.renderListMovieShowing()}</Slider>
+                            </div>
                         </div>
-                    </div>
-                    <div
-                        className="tab-pane fade"
-                        id="profile"
-                        role="tabpanel"
-                        aria-labelledby="profile-tab"
-                    >
-                        <div className=" desktop futureFilms">
-                            <Slider {...settings}>{this.renderListMovieComing()}</Slider>
+                        <div
+                            className="tab-pane fade"
+                            id="profile"
+                            role="tabpanel"
+                            aria-labelledby="profile-tab"
+                        >
+                            <div className=" desktop futureFilms">
+                                <Slider {...settings}>{this.renderListMovieComing()}</Slider>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </Fragment>
         );
     }
 }

@@ -58,24 +58,24 @@ export default function Header() {
                         <ul className="navbar-nav">
                             <div className="header__center">
                                 <li className="nav-item">
-                                    <a className="nav-link" href="true">
+                                    <Link to="/home" className="nav-link">
                                         Lịch chiếu
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="true">
+                                    <Link to="/home" className="nav-link">
                                         Cụm rạp
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="true">
+                                    <Link to="/home" className="nav-link">
                                         Tin tức
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="true">
+                                    <Link to="/home" className="nav-link">
                                         Ứng dụng
-                                    </a>
+                                    </Link>
                                 </li>
                             </div>
                             <div className="header__right">

@@ -1,7 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Slider from 'react-slick';
+import ModalVideo from 'react-modal-video';
 
 export default class HomeCarousel extends Component {
+    constructor() {
+        super();
+        this.state = {
+            isOpen: false,
+            videoId: '',
+        };
+        this.openModal = this.openModal.bind(this);
+    }
+
+    openModal(videoId) {
+        this.setState({ isOpen: true, videoId});
+    }
     render() {
         function SampleNextArrow(props) {
             const { className, style, onClick } = props;
@@ -39,49 +52,49 @@ export default class HomeCarousel extends Component {
             prevArrow: <SamplePrevArrow />,
         };
         return (
-            <section className="carousel">
-                <div className="carousel__content">
-                    <Slider {...settings}>
-                        <div className="carousel__item">
-                            <a href="true">
-                                <img src="./img/trang-ti-16194117174325.jpg" />
-                            </a>
-                            <button
-                                infinite="false"
-                                data-fancybox
-                                data-type="iframe"
-                                data-src="https://www.youtube.com/embed/l2XBzUZidig"
-                            >
-                                <img src="./img/play-video.png" />
-                            </button>
-                        </div>
-                        <div className="carousel__item">
-                            <a href="true">
-                                <img src="./img/lat-mat-48h-16177782153424.png" />
-                            </a>
-                            <button
-                                data-fancybox
-                                data-type="iframe"
-                                data-src="https://www.youtube.com/embed/kBY2k3G6LsM"
-                            >
-                                <img src="./img/play-video.png" />
-                            </button>
-                        </div>
-                        <div className="carousel__item">
-                            <a href="true">
-                                <img src="./img/ban-tay-diet-quy-evil-expeller-16177781815781.png" />
-                            </a>
-                            <button
-                                data-fancybox
-                                data-type="iframe"
-                                data-src="https://www.youtube.com/embed/uqJ9u7GSaYM"
-                            >
-                                <img src="./img/play-video.png" />
-                            </button>
-                        </div>
-                    </Slider>
-                </div>
-            </section>
+            <Fragment>
+                <ModalVideo
+                    channel="youtube"
+                    isOpen={this.state.isOpen}
+                    videoId={this.state.videoId}
+                    onClose={() => this.setState({ isOpen: false })}
+                />
+                <section className="carousel">
+                    <div className="carousel__content">
+                        <Slider {...settings}>
+                            <div className="carousel__item">
+                                <a href="true">
+                                    <img src="./img/trang-ti-16194117174325.jpg" />
+                                </a>
+
+                                <button onClick={() => this.openModal('l2XBzUZidig')}>
+                                    <img src="./img/play-video.png" />
+                                </button>
+                            </div>
+                            <div className="carousel__item">
+                                <a href="true">
+                                    <img src="./img/lat-mat-48h-16177782153424.png" />
+                                </a>
+                                <button
+                                   onClick={() => this.openModal('8dTr6ieK-UA')}
+                                >
+                                    <img src="./img/play-video.png" />
+                                </button>
+                            </div>
+                            <div className="carousel__item">
+                                <a href="true">
+                                    <img src="./img/ban-tay-diet-quy-evil-expeller-16177781815781.png" />
+                                </a>
+                                <button
+                                    onClick={() => this.openModal('uqJ9u7GSaYM')}
+                                >
+                                    <img src="./img/play-video.png" />
+                                </button>
+                            </div>
+                        </Slider>
+                    </div>
+                </section>
+            </Fragment>
         );
     }
 }
