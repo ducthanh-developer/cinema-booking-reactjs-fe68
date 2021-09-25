@@ -20,15 +20,15 @@
 ### Phần 1: Giao diện
 
 **Xây dựng giao diện người dùng và quản trị với React**
-- Đăng nhập/Đăng kí cho người dùng, và phân loại người dùng
-- Giao diện cho trang Home
-- Giao diện cho trang Đăng kí/Đăng nhập
-- Giao diện cho trang Movie Detail
-- Xây dựng giao diện Admin Dashboard để quản lí hệ thống
-- Giao diện quản lí Movie
-- Giao diện quản lí User
-- Giao diện quản lí Movie Booking
-- Host web trên Heroku, Vercel, …
+- [ ] Đăng nhập/Đăng kí cho người dùng, và phân loại người dùng
+- [x] Giao diện cho trang Home
+- [x] Giao diện cho trang Đăng kí/Đăng nhập
+- [x] Giao diện cho trang Movie Detail
+- [x] Xây dựng giao diện Admin Dashboard để quản lí hệ thống
+- [x] Giao diện quản lí Movie
+- [ ] Giao diện quản lí User
+- [ ] Giao diện quản lí Movie Booking
+- [ ] Host web trên Heroku, Vercel, …
 
 ### Phần 2: Chức năng
 
