@@ -1,10 +1,10 @@
 # PROJECT REACTJS - MOVIE TICKET BOOKING
 
-## SIZE GROUP: 2
+## Size Group: 2
 
-## WORK ASSIMENT: https://docs.google.com/spreadsheets/d/1ezBu2jSEUEU9dkpKM_V4NZTi-lqNqVeIxHWe-RvGw3Y/edit#gid=0
+## Work Assigment: https://docs.google.com/spreadsheets/d/1ezBu2jSEUEU9dkpKM_V4NZTi-lqNqVeIxHWe-RvGw3Y/edit#gid=0
 
-## THƯ VIỆN - PACKAGE - API
+## Library - Package - API
 - ReactJS
 - Redux Devtools
 - React - Redux
@@ -12,7 +12,7 @@
 - UI Library: Ant Design, Bootstrap@4.6.0
 - SCSS, Styled Component
 
-## ABOUT
+## About
 
 - Dashboard cho admin quản lý hệ thống người dùng, lịch chiếu, và phim
 - Giao diện web cho người dùng xem lịch chiếu, xem phim, và đặt vé
@@ -27,7 +27,7 @@
 - [x] Xây dựng giao diện Admin Dashboard để quản lí hệ thống
 - [x] Giao diện quản lí Movie
 - [ ] Giao diện quản lí User
-- [ ] Giao diện quản lí Movie Booking
+- [x] Giao diện quản lí Movie Booking
 - [ ] Host web trên Heroku, Vercel, …
 
 ### Phần 2: Chức năng
