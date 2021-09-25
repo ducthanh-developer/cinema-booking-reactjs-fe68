@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# PROJECT REACTJS - MOVIE TICKET BOOKING
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## SIZE GROUP: 2
 
-## Available Scripts
+## WORK ASSIMENT: https://docs.google.com/spreadsheets/d/1ezBu2jSEUEU9dkpKM_V4NZTi-lqNqVeIxHWe-RvGw3Y/edit#gid=0
 
-In the project directory, you can run:
+## ABOUT
 
-### `yarn start`
+• Dashboard cho admin quản lý hệ thống người dùng, lịch chiếu, và phim
+• Giao diện web cho người dùng xem lịch chiếu, xem phim, và đặt vé
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Phần 1: Giao diện
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**Xây dựng giao diện người dùng và quản trị với React**
+• Đăng nhập/Đăng kí cho người dùng, và phân loại người dùng
+• Giao diện cho trang Home
+• Giao diện cho trang Đăng kí/Đăng nhập
+• Giao diện cho trang Movie Detail
+• Xây dựng giao diện Admin Dashboard để quản lí hệ thống
+• Giao diện quản lí Movie
+• Giao diện quản lí User
+• Giao diện quản lí Movie Booking
+• Host web trên Heroku, Vercel, …
 
-### `yarn test`
+### Phần 2: Chức năng
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Thao tác với API để truyền và nhận dữ liệu từ Backend**
+• Thực hiện chức năng chung cho Người dùng và Phim
+• Xác thực form đăng kí/đăng nhập trước khi thao tác với API
+• Thực hiện các chức năng trong CRUD cho quản lý phim
+• Thực hiện các chức năng trong CRUD cho quản lý người dùng
+• Thực hiện các chức năng trong CRUD cho quản lý lịch chiếu
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## THƯ VIỆN - PACKAGE - API
+• ReactJS
+• Redux Devtools
+• React - Redux
+• The Movies Database
+• UI Library: Ant Design, Bootstrap@4.6.0
+• SCSS, Styled Component
